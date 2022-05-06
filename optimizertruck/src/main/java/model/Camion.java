@@ -1,7 +1,5 @@
 package model;
 
-import com.sun.tools.jdi.IntegerValueImpl;
-
 public class Camion {
 
     private String immatriculation;
