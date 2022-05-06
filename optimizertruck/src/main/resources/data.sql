@@ -1,8 +1,3 @@
-DROP DATABASE IF EXISTS otbdd;
-
-CREATE DATABASE otbdd;
-
-USE otbdd;
 
 DROP TABLE IF EXISTS client;
 
