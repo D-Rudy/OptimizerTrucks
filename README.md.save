@@ -1,0 +1,22 @@
+
+OPTIMIZER TRUCK
+
+PROJET NFA036
+
+UTILISATION DE SPRINGBOOT:
+
+	Dépendances:
+			JPA
+			Thymeleaf
+			H2
+			Spring Web
+			Dev Tools
+
+Port serveur TomCat: 8090;
+
+H2 id:sa passwd:
+
+
+Initialisation du projet:
+
+Dans IDE, faire importer projet;
