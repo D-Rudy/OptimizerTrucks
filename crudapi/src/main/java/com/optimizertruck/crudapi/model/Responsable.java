@@ -1,6 +1,9 @@
 package com.optimizertruck.crudapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -9,19 +12,44 @@ public class Responsable {
     @Id
     @Column(name = "id")
     private String id;
-    @Column(name = "nom_responsable")
+    @Column(name = "nom")
     private String nom;
-    @Column(name = "prenom_responsable")
+    @Column(name = "prenom")
     private String prenom;
-    @Column(name = "tel_responsable")
+    @Column(name = "tel")
     private String tel;
-    @Column(name = "mail_responsable")
+    @Column(name = "mail")
     private String mail;
-    @Column(name = "passwd_responsable")
+    @Column(name = "passwd")
     private String passwd;
 
+    @OneToMany(mappedBy = "responsable")
+    private List<Logisticien> logisticienList;
+    @OneToOne
+    @JoinColumn(name = "centraleId", insertable = false, updatable = false)
+    private Centrale centrale;
 
-    @Id
+    private String centraleId;
+
+    public Responsable() {
+    }
+
+    public String getCentraleId() {
+        return centraleId;
+    }
+
+    public void setCentraleId(String centraleId) {
+        this.centraleId = centraleId;
+    }
+
+    public Centrale getCentrale() {
+        return centrale;
+    }
+
+    public void setCentrale(Centrale centrale) {
+        this.centrale = centrale;
+    }
+
     public String getId() {
         return id;
     }
@@ -70,16 +98,25 @@ public class Responsable {
         this.passwd = passwd;
     }
 
-    @Override
-    public String toString() {
-        return
-                "matricule='" + id + '\'' +
-                        ", nom='" + nom + '\'' +
-                        ", prenom='" + prenom + '\'' +
-                        ", tel='" + tel + '\'' +
-                        ", mail='" + mail + '\'' +
-                        ", passwd='" + passwd + '\'' +
-                        '}';
+    public List<Logisticien> getLogisticienList() {
+        return logisticienList;
     }
 
+    public void setLogisticienList(List<Logisticien> logisticienList) {
+        this.logisticienList = logisticienList;
+    }
+
+    @Override
+    public String toString() {
+        return "Responsable{" +
+                "id='" + id + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", tel='" + tel + '\'' +
+                ", mail='" + mail + '\'' +
+                ", passwd='" + passwd + '\'' +
+                ", logisticienList=" + logisticienList +
+                ", centrale=" + centrale +
+                '}';
+    }
 }

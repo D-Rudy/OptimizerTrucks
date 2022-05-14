@@ -3,8 +3,11 @@ package com.optimizertruck.crudapi.controller;
 
 import com.optimizertruck.crudapi.exception.ResourceNotFoundException;
 import com.optimizertruck.crudapi.model.Logisticien;
+import com.optimizertruck.crudapi.model.Responsable;
 import com.optimizertruck.crudapi.repository.LogisticienRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,28 +20,30 @@ import java.util.Map;
 @RequestMapping("/api/v1")
 public class LogisticienController {
 
+
     @Autowired
     private LogisticienRepository logisticienRepository;
 
     @GetMapping("/logisticiens")
-    public List<Logisticien> getAllLogisticiens() {
+    public List<Logisticien> getAllLogisticien() {
         return logisticienRepository.findAll();
     }
 
     @GetMapping("/logisticiens/{id}")
-    public ResponseEntity<Logisticien> getLogisticienById(@PathVariable(value = "id") Integer logisticienId) throws ResourceNotFoundException {
+    public ResponseEntity<Logisticien> getLogisticienById(@PathVariable(value = "id") String logisticienId) throws ResourceNotFoundException {
         Logisticien logisticien = logisticienRepository.findById(logisticienId).orElseThrow(() -> new ResourceNotFoundException("Le logisticien avec l'id " + logisticienId + " est introuvable"));
         return ResponseEntity.ok().body(logisticien);
     }
 
     @PostMapping("/logisticiens")
-    public Logisticien createLogisticien(@Valid @RequestBody Logisticien logisticien) {
-        return logisticienRepository.save(logisticien);
+    @ResponseBody
+    public ResponseEntity createLogisticien(@Valid @RequestBody Logisticien logisticien) {
+        return new ResponseEntity(logisticienRepository.save(logisticien), HttpStatus.CREATED);
     }
 
     @PutMapping("/logisticiens/{id}")
-    public ResponseEntity<Logisticien> updateLogisticien(@PathVariable(value = "id") Integer logisticienId,
-                                                   @Valid @RequestBody Logisticien logisticienDetails) throws ResourceNotFoundException {
+    public ResponseEntity<Logisticien> updateLogisticien(@PathVariable(value = "id") String logisticienId,
+                                                         @Valid @RequestBody Logisticien logisticienDetails) throws ResourceNotFoundException {
         Logisticien logisticien = logisticienRepository.findById(logisticienId).
                 orElseThrow(() -> new ResourceNotFoundException
                         ("Le logisticien avec l'id " + logisticienId + " est introuvable"));
@@ -48,18 +53,32 @@ public class LogisticienController {
         logisticien.setTel(logisticienDetails.getTel());
         logisticien.setMail(logisticienDetails.getMail());
         logisticien.setPasswd(logisticienDetails.getPasswd());
+        logisticien.setResponsable(logisticienDetails.getResponsable());
 
         final Logisticien updatedLogisticien = logisticienRepository.save(logisticien);
         return ResponseEntity.ok(updatedLogisticien);
     }
 
     @DeleteMapping("/logisticiens/{id}")
-    public Map<String, Boolean> deleteLogisticien(@PathVariable(value = "id") Integer logisticienId) throws ResourceNotFoundException {
-        Logisticien centrale = logisticienRepository.findById(logisticienId).orElseThrow(() -> new ResourceNotFoundException("Le logisticien avec l'id " + logisticienId + " est introuvable"));
+    public Map<String, Boolean> deleteLogisticien(@PathVariable(value = "id") String logisticienId) throws ResourceNotFoundException {
+        Logisticien logisticien = logisticienRepository.findById(logisticienId).orElseThrow(() -> new ResourceNotFoundException("Le logisticien avec l'id " + logisticienId + " est introuvable"));
 
-        logisticienRepository.delete(centrale);
+        logisticienRepository.delete(logisticien);
         Map<String, Boolean> response = new HashMap<>();
         response.put("supprimé", Boolean.TRUE);
         return response;
     }
+/*     @Autowired
+    private LogisticienService logisticienService;
+
+   public LogisticienController(LogisticienService logisticienService) {
+
+        this.logisticienService = logisticienService;
+    }
+
+    @GetMapping(path = "/logisticiens/{id}")
+    public Logisticien getLogisticien(@PathVariable("id") String matricule) {
+        return logisticienService.getLogisticien(matricule);
+    }*/
 }
+

@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "logisticien")
-public class Logisticien {
+@Table(name = "chauffeur")
+public class Chauffeur {
     @Id
     @Column(name = "id")
     private String id;
@@ -21,30 +21,31 @@ public class Logisticien {
     @Column(name = "passwd")
     private String passwd;
 
+    @OneToOne
     @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "responsableId", insertable = false, updatable = false)
-    Responsable responsable;
+    @JoinColumn(name = "camionId", insertable = false, updatable = false)
+    private Camion camion;
 
-    private String responsableId;
+private String camionId;
 
-    public Logisticien() {
+
+    public Chauffeur() {
     }
 
-    public Responsable getResponsable() {
-        return responsable;
+    public String getCamionId() {
+        return camionId;
     }
 
-    public void setResponsable(Responsable responsable) {
-        this.responsable = responsable;
+    public void setCamionId(String camionId) {
+        this.camionId = camionId;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String matricule) {
-        this.id = matricule;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -87,24 +88,24 @@ public class Logisticien {
         this.passwd = passwd;
     }
 
-    public String getResponsableId() {
-        return responsableId;
+    public Camion getCamion() {
+        return camion;
     }
 
-    public void setResponsableId(String responsableId) {
-        this.responsableId = responsableId;
+    public void setCamion(Camion camion) {
+        this.camion = camion;
     }
 
     @Override
     public String toString() {
-        return "Logisticien{" +
+        return "Chauffeur{" +
                 "Matricule='" + id + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", tel='" + tel + '\'' +
                 ", mail='" + mail + '\'' +
                 ", passwd='" + passwd + '\'' +
-                ", responsable=" + responsable +
+                ", immatriculation camion=" + camion +
                 '}';
     }
 }

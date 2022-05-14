@@ -1,5 +1,7 @@
 package com.optimizertruck.crudapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,81 +11,95 @@ import java.util.List;
 public class Centrale {
 
 
-    private String idCentrale;
-    private String nomCentrale;
-    private String telCentrale;
-    private String adresseCentrale;
-    private String cpCentrale;
-    private String villeCentrale;
-    private String coordonneCentrale;
+    @Id
+    private String id;
+    private String nom;
+    private String tel;
+    private String adresse;
+    private String cp;
+    private String ville;
+    private String coordonne;
     private int capaciteProd;
 
 
-
+    @JsonBackReference
+    @OneToOne(mappedBy = "centrale")
+    private Responsable responsable;
 
 
     public Centrale() {
 
     }
 
-    @Id
-    public String getId() {
-        return idCentrale;
+    public String getIdCentrale() {
+        return id;
     }
 
-    public void setId(String id) {
-        this.idCentrale = id;
+    public void setIdCentrale(String idCentrale) {
+        this.id = idCentrale;
     }
 
-    @Column(name = "nom_centrale", nullable = false)
+    public void setCapaciteProd(int capaciteProd) {
+        this.capaciteProd = capaciteProd;
+    }
+/*
+    public Responsable getResponsable() {
+        return responsable;
+    }
+
+    public void setResponsable(Responsable responsable) {
+        this.responsable = responsable;
+    }*/
+
+    @Column(name = "nom", nullable = false)
     public String getNomCentrale() {
-        return nomCentrale;
+        return nom;
     }
 
     public void setNomCentrale(String nomCentrale) {
-        this.nomCentrale = nomCentrale;
+        this.nom = nomCentrale;
     }
-    @Column(name = "tel_centrale")
+    @Column(name = "tel")
     public String getTelCentrale() {
-        return telCentrale;
+        return tel;
     }
 
     public void setTelCentrale(String telCentrale) {
-        this.telCentrale = telCentrale;
+        this.tel = telCentrale;
     }
-    @Column(name = "adresse_centrale", nullable = false)
+    @Column(name = "adresse", nullable = false)
     public String getAdresseCentrale() {
-        return adresseCentrale;
+        return adresse;
     }
 
     public void setAdresseCentrale(String adresseCentrale) {
-        this.adresseCentrale = adresseCentrale;
+        this.adresse = adresseCentrale;
     }
-    @Column(name = "cp_centrale", nullable = false)
+    @Column(name = "cp", nullable = false)
     public String getCpCentrale() {
-        return cpCentrale;
+        return cp;
     }
 
     public void setCpCentrale(String cpCentrale) {
-        this.cpCentrale = cpCentrale;
+        this.cp = cpCentrale;
     }
-    @Column(name = "ville_centrale", nullable = false)
+    @Column(name = "ville", nullable = false)
     public String getVilleCentrale() {
-        return villeCentrale;
+        return ville;
     }
 
     public void setVilleCentrale(String villeCentrale) {
-        this.villeCentrale = villeCentrale;
+        this.ville = villeCentrale;
     }
-    @Column(name = "coordonne_centrale", nullable = false)
+    @Column(name = "coordonne", nullable = false)
     public String getCoordonneCentrale() {
-        return coordonneCentrale;
+        return coordonne;
     }
 
     public void setCoordonneCentrale(String coordonneCentrale) {
-        this.coordonneCentrale = coordonneCentrale;
+        this.coordonne = coordonneCentrale;
     }
-    @Column(name = "capacite_centrale")
+    @Column(name = "capacite-prod")
     public Integer getCapaciteProd() {
         return capaciteProd;
     }
@@ -96,13 +112,13 @@ public class Centrale {
     @Override
     public String toString() {
         return "Centrale{" +
-                "id='" + idCentrale + '\'' +
-                ", nomCentrale='" + nomCentrale + '\'' +
-                ", telCentrale='" + telCentrale + '\'' +
-                ", adresseCentrale='" + adresseCentrale + '\'' +
-                ", cpCentrale='" + cpCentrale + '\'' +
-                ", villeCentrale='" + villeCentrale + '\'' +
-                ", coordonneCentrale='" + coordonneCentrale + '\'' +
+                "id='" + id + '\'' +
+                ", nomCentrale='" + nom + '\'' +
+                ", telCentrale='" + tel + '\'' +
+                ", adresseCentrale='" + adresse + '\'' +
+                ", cpCentrale='" + cp + '\'' +
+                ", villeCentrale='" + ville + '\'' +
+                ", coordonneCentrale='" + coordonne + '\'' +
                 ", capaciteProd=" + capaciteProd +
                 '}';
     }

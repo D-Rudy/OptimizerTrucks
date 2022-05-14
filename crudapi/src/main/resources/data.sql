@@ -1,20 +1,66 @@
 DROP TABLE IF EXISTS responsable;
-DROP TABLE IF EXISTS CENTRALE;
+DROP TABLE IF EXISTS centrale;
+DROP TABLE IF EXISTS logisticien;
+DROP TABLE IF EXISTS camion;
+DROP TABLE IF EXISTS chauffeur;
+DROP TABLE IF EXISTS client;
+DROP TABLE IF EXISTS mission;
+DROP TABLE IF EXISTS chantier;
+DROP TABLE IF EXISTS contrat;
+DROP TABLE IF EXISTS livrer;
 
-
-
-Create table CENTRALE
+CREATE TABLE chantier
 (
-    id                 varchar,
-    nom_centrale       varchar,
-    tel_centrale       varchar,
-    adresse_centrale   varchar,
-    cp_centrale        varchar,
-    ville_centrale     varchar,
-    coordonne_centrale varchar,
-    capacite_centrale  int
+    id         INT,
+    nom        VARCHAR(50),
+    adresse    VARCHAR(50),
+    cp         VARCHAR(5),
+    ville      VARCHAR(50),
+    coordonnee VARCHAR(16)
+);
+
+CREATE TABLE client
+(
+    id      VARCHAR(6),
+    nom     VARCHAR(25),
+    prenom  VARCHAR(25),
+    tel     VARCHAR(13),
+    mail    VARCHAR(50),
+    adresse VARCHAR(50),
+    cp      VARCHAR(5),
+    ville   VARCHAR(50)
+);
+CREATE TABLE camion
+(
+    id          VARCHAR(7),
+    nettoyage   INT(4),
+    vidange     INT(4),
+    remplissage INT(4)
+);
+
+Create table centrale
+(
+    id        varchar,
+    nom       varchar,
+    tel       varchar,
+    adresse   varchar,
+    cp        varchar,
+    ville     varchar,
+    coordonne varchar,
+    capacite_prod  int
 
 );
+
+CREATE TABLE contrat
+(
+    id           INT,
+    date_debut   DATE,
+    date_fin     DATE,
+    qte_a_livrer DECIMAL(10, 2),
+    client_id    VARCHAR(6),
+    chantier_id  INT
+);
+
 CREATE TABLE responsable
 (
     id          VARCHAR(6),
@@ -23,21 +69,79 @@ CREATE TABLE responsable
     tel         VARCHAR(13),
     mail        VARCHAR(25),
     passwd      VARCHAR(50),
-    id_centrale VARCHAR(6)
+    centrale_id VARCHAR(6)
 );
-DROP TABLE IF EXISTS logisticien;
 
 CREATE TABLE logisticien
 (
-    id                    VARCHAR(6),
+    id             VARCHAR(6),
+    nom            VARCHAR(25),
+    prenom         VARCHAR(25),
+    tel            VARCHAR(13),
+    mail           VARCHAR(50),
+    passwd         VARCHAR(50),
+    responsable_id VARCHAR(6)
+);
+
+
+CREATE TABLE chauffeur
+(
+    id        VARCHAR(6),
     nom       VARCHAR(25),
     prenom    VARCHAR(25),
-    tel      VARCHAR(13),
-    mail   VARCHAR(50),
-    passwd  VARCHAR(50),
-    matricule_responsable VARCHAR(6)
+    tel       VARCHAR(13),
+    mail      VARCHAR(50),
+    passwd    VARCHAR(50),
+    camion_id VARCHAR(7)
 );
-INSERT INTO CENTRALE
+
+CREATE TABLE mission
+(
+    id                INT,
+    date_heure        DATETIME,
+    qte_a_transporter DECIMAL(4, 2),
+    accepter_mission  TINYINT(1),
+    logisticien_id    VARCHAR(6),
+    chauffeur_id      VARCHAR(6)
+
+);
+
+
+CREATE TABLE livrer
+(
+    chantier_id INT,
+    camion_id   VARCHAR(7),
+    qte_livree  DECIMAL(8, 2),
+    nb_tour     INT
+);
+
+INSERT INTO client
+VALUES ('BAC951',
+        'Barry',
+        'Coudert',
+        '0125936450',
+        'BarryCoudert@teleworm.us ',
+        '77  Avenue Millies Lacroix',
+        '95600',
+        'EAUBONNE'),
+       ('PEB501',
+        'Peverell',
+        'Boucher',
+        '0240817968',
+        'PeverellBoucher@dayrep.com',
+        '94, rue Ernest Renan',
+        '50100',
+        'CHERBOURG');
+
+INSERT INTO chantier
+VALUES (1,
+        'Stade Bollaert',
+        'Av. Alfred Maes',
+        '62300',
+        'Lens',
+        '50.43287,2.81508');
+
+INSERT INTO centrale
 VALUES ('3MER',
         'Cemex Betons Nord Ouest',
         '0321946559',
@@ -183,51 +287,78 @@ VALUES ('FIS712',
         'desforges',
         '5LOO');
 
-INSERT INTO
-    logisticien
-VALUES
-    (
-        'SWD471',
+INSERT INTO logisticien
+VALUES ('SWD471',
         'Swanson',
         'Darius',
         '0382381911',
         'quis.pede.suspendisse@google.edu',
         'swanson',
-        'FIS712'
-    ),
-    (
-        'SCO813',
+        'FIS712'),
+       ('SCO813',
         'Schneider',
         'Oliver',
         '0823307257',
         'risus@outlook.ca',
         'scneider',
-        'FIS712'
-    ),
-    (
-        'ROA414',
+        'FIS712'),
+       ('ROA414',
         'Rodriguez',
         'Abra',
         '0388657754',
         'dolor.egestas@protonmail.couk',
         'rodriguez',
-        'DSL340'
-    ),
-    (
-        'KRJ595',
+        'DSL340'),
+       ('KRJ595',
         'Kramer',
         'Jin',
         '0612546136',
         'lacus.etiam.bibendum@aol.couk',
         'kramer',
-        'DSL340'
-    ),
-    (
-        'CLD338',
+        'DSL340'),
+       ('CLD338',
         'Clavette',
         'Dorothée',
         '0595489168',
         'DorotheeClavette@jourrapide.com ',
         'clavette',
-        'DSL340'
-    );
+        'DSL340');
+
+INSERT INTO camion
+VALUES ('AA345FG', 30, 15, 30),
+       ('AE456RE', 30, 15, 30);
+
+INSERT INTO chauffeur
+VALUES ('FEM921',
+        'Fecteau',
+        'Marlon',
+        '0193874663',
+        'MarlonFecteau@teleworm.us',
+        'fecteau',
+        'AA345FG'),
+       ('GOB592',
+        'Gougeon',
+        'Bruce',
+        '0363657897',
+        'BruceGougeon@rhyta.com',
+        'gougeon',
+        'AE456RE');
+
+INSERT INTO mission
+VALUES (1,
+        '2022-03-01 08:54:32',
+        7.5,
+        1,
+        'SWD471',
+        'GOB592');
+
+INSERT INTO contrat
+VALUES (1,
+        '2022-04-01',
+        null,
+        300000,
+        'BAC951',
+        1);
+
+INSERT INTO livrer
+VALUES (1, 'AA345FG', 6000, 10);

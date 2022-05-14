@@ -3,48 +3,57 @@ package com.optimizertruck.crudapi.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "logisticien")
-public class Logisticien {
+@Table(name = "client")
+public class Client {
     @Id
     @Column(name = "id")
     private String id;
+
     @Column(name = "nom")
     private String nom;
+
     @Column(name = "prenom")
     private String prenom;
+
     @Column(name = "tel")
     private String tel;
+
     @Column(name = "mail")
     private String mail;
-    @Column(name = "passwd")
-    private String passwd;
+
+    @Column(name = "adresse")
+    private String adresse;
+
+    @Column(name = "cp")
+    private String cp;
+
+    @Column(name = "ville")
+    private String ville;
 
     @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "responsableId", insertable = false, updatable = false)
-    Responsable responsable;
+    @OneToMany(mappedBy = "client")
+    private List<Contrat> contratList;
 
-    private String responsableId;
-
-    public Logisticien() {
+    public Client() {
     }
 
-    public Responsable getResponsable() {
-        return responsable;
+    public List<Contrat> getContratList() {
+        return contratList;
     }
 
-    public void setResponsable(Responsable responsable) {
-        this.responsable = responsable;
+    public void setContratList(List<Contrat> contratList) {
+        this.contratList = contratList;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String matricule) {
-        this.id = matricule;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -79,32 +88,45 @@ public class Logisticien {
         this.mail = mail;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public String getAdresse() {
+        return adresse;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
-    public String getResponsableId() {
-        return responsableId;
+    public String getCp() {
+        return cp;
     }
 
-    public void setResponsableId(String responsableId) {
-        this.responsableId = responsableId;
+    public void setCp(String cp) {
+        this.cp = cp;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
     }
 
     @Override
     public String toString() {
-        return "Logisticien{" +
-                "Matricule='" + id + '\'' +
+        return "Client{" +
+                "Numéro Client='" + id + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", tel='" + tel + '\'' +
                 ", mail='" + mail + '\'' +
-                ", passwd='" + passwd + '\'' +
-                ", responsable=" + responsable +
+                ", adresse='" + adresse + '\'' +
+                ", cp='" + cp + '\'' +
+                ", ville='" + ville + '\'' +
                 '}';
     }
 }
+
+
+
+

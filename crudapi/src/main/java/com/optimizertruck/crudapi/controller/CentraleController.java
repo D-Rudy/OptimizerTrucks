@@ -4,6 +4,7 @@ import com.optimizertruck.crudapi.exception.ResourceNotFoundException;
 import com.optimizertruck.crudapi.model.Centrale;
 import com.optimizertruck.crudapi.repository.CentraleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +32,8 @@ public class CentraleController {
     }
 
     @PostMapping("/centrales")
-    public Centrale createCentrale(@Valid @RequestBody Centrale centrale) {
-        return centraleRepository.save(centrale);
+    public ResponseEntity createCentrale(@Valid @RequestBody Centrale centrale) {
+        return new ResponseEntity(centraleRepository.save(centrale), HttpStatus.CREATED);
     }
 
     @PutMapping("/centrales/{id}")
@@ -41,7 +42,7 @@ public class CentraleController {
         Centrale centrale = centraleRepository.findById(centraleId).
                 orElseThrow(() -> new ResourceNotFoundException
                         ("Centrale avec l'id " + centraleId + " est introuvable"));
-        centrale.setId(centraleDetails.getId());
+        centrale.setIdCentrale(centraleDetails.getIdCentrale());
         centrale.setNomCentrale(centraleDetails.getNomCentrale());
         centrale.setTelCentrale(centraleDetails.getTelCentrale());
         centrale.setAdresseCentrale(centraleDetails.getAdresseCentrale());

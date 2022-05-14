@@ -6,6 +6,7 @@ import com.optimizertruck.crudapi.model.Responsable;
 
 import com.optimizertruck.crudapi.repository.ResponsableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,8 +34,9 @@ public class ResponsableController {
     }
 
     @PostMapping("/responsables")
-    public Responsable createResponsable(@Valid @RequestBody Responsable responsable) {
-        return responsableRepository.save(responsable);
+    @ResponseBody
+    public ResponseEntity createResponsable(@Valid @RequestBody Responsable responsable) {
+        return new ResponseEntity(responsableRepository.save(responsable), HttpStatus.CREATED);
     }
 
     @PutMapping("/responsables/{id}")
@@ -54,7 +56,7 @@ public class ResponsableController {
         return ResponseEntity.ok(updatedResponsable);
     }
 
-    @DeleteMapping("/responsable/{id}")
+    @DeleteMapping("/responsables/{id}")
     public Map<String, Boolean> deleteResponsable(@PathVariable(value = "id") String responsableId) throws ResourceNotFoundException {
         Responsable responsable = responsableRepository.findById(responsableId).orElseThrow(() -> new ResourceNotFoundException("Le responsable avec l'id " + responsableId + " est introuvable"));
 
