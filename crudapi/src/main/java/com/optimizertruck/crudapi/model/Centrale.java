@@ -22,9 +22,9 @@ public class Centrale {
     private int capaciteProd;
 
 
-    @JsonBackReference
+/*    @JsonBackReference
     @OneToOne(mappedBy = "centrale")
-    private Responsable responsable;
+    private Responsable responsable;*/
 
 
     public Centrale() {
@@ -38,17 +38,9 @@ public class Centrale {
     public void setIdCentrale(String idCentrale) {
         this.id = idCentrale;
     }
-
+/*
     public void setCapaciteProd(int capaciteProd) {
         this.capaciteProd = capaciteProd;
-    }
-/*
-    public Responsable getResponsable() {
-        return responsable;
-    }
-
-    public void setResponsable(Responsable responsable) {
-        this.responsable = responsable;
     }*/
 
     @Column(name = "nom", nullable = false)

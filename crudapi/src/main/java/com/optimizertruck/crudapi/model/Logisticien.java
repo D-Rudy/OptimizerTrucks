@@ -24,7 +24,7 @@ public class Logisticien {
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "responsableId", insertable = false, updatable = false)
-    Responsable responsable;
+    private Responsable responsable;
 
     private String responsableId;
 
