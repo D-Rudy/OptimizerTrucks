@@ -27,37 +27,37 @@ public class ResponsableController {
         return responsableRepository.findAll();
     }
 
-    @GetMapping("/responsables/{id}")
-    public ResponseEntity<Responsable> getResponsableById(@PathVariable(value = "id") String responsableId) throws ResourceNotFoundException {
+    @GetMapping("/responsable/{id}")
+    public ResponseEntity<Responsable> getResponsableById(@PathVariable(value = "id") Integer responsableId) throws ResourceNotFoundException {
         Responsable responsable = responsableRepository.findById(responsableId).orElseThrow(() -> new ResourceNotFoundException("Le responsable avec l'id " + responsableId + " est introuvable"));
         return ResponseEntity.ok().body(responsable);
     }
 
-    @PostMapping("/responsables")
+    @PostMapping("/responsable")
     @ResponseBody
     public ResponseEntity createResponsable(@Valid @RequestBody Responsable responsable) {
         return new ResponseEntity(responsableRepository.save(responsable), HttpStatus.CREATED);
     }
 
-    @PutMapping("/responsables/{id}")
-    public ResponseEntity<Responsable> updateResponsable(@PathVariable(value = "id") String responsableId,
+    @PutMapping("/responsable/{id}")
+    public ResponseEntity<Responsable> updateResponsable(@PathVariable(value = "id") Integer responsableId,
                                                          @Valid @RequestBody Responsable responsableDetails) throws ResourceNotFoundException {
         Responsable responsable = responsableRepository.findById(responsableId).
                 orElseThrow(() -> new ResourceNotFoundException
                         ("Le responsable avec l'id " + responsableId + " est introuvable"));
 
-        responsable.setNom(responsableDetails.getNom());
-        responsable.setPrenom(responsableDetails.getPrenom());
-        responsable.setTel(responsableDetails.getTel());
-        responsable.setMail(responsableDetails.getMail());
-        responsable.setPasswd(responsableDetails.getPasswd());
+        responsable.setNomResponsable(responsableDetails.getNomResponsable());
+        responsable.setPrenomResponsable(responsableDetails.getPrenomResponsable());
+        responsable.setTelResponsable(responsableDetails.getTelResponsable());
+        responsable.setMailResponsable(responsableDetails.getMailResponsable());
+        responsable.setPasswdResponsable(responsableDetails.getPasswdResponsable());
 
         final Responsable updatedResponsable = responsableRepository.save(responsable);
         return ResponseEntity.ok(updatedResponsable);
     }
 
     @DeleteMapping("/responsables/{id}")
-    public Map<String, Boolean> deleteResponsable(@PathVariable(value = "id") String responsableId) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteResponsable(@PathVariable(value = "id") Integer responsableId) throws ResourceNotFoundException {
         Responsable responsable = responsableRepository.findById(responsableId).orElseThrow(() -> new ResourceNotFoundException("Le responsable avec l'id " + responsableId + " est introuvable"));
 
         responsableRepository.delete(responsable);

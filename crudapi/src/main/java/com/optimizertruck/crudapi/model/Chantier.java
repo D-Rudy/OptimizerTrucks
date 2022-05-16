@@ -1,102 +1,114 @@
 package com.optimizertruck.crudapi.model;
 
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "chantier")
-public class Chantier implements Serializable {
+public class Chantier {
+
     @Id
-    @Column(name = "id", nullable = false)
-    private Integer id;
+    @GeneratedValue
+    @Column(name = "id_chantier", nullable = false)
+    private Integer idChantier;
 
-    private String nom;
+    @Column(name = "nom_chantier")
+    private String nomChantier;
 
-    private String adresse;
+    @Column(name = "adresse_chantier")
+    private String adresseChantier;
 
-    private String cp;
+    @Column(name = "cp_chantier")
+    private String cpChantier;
 
-    private String ville;
+    @Column(name = "ville_chantier")
+    private String villeChantier;
 
-    private String coordonnee;
+    @Column(name = "coordonnee_chantier")
+    private String coordonneeChantier;
 
-    @OneToMany(mappedBy = "chantier")
-    @JsonBackReference
-    private List<Livrer> livrerList;
+    @OneToMany
+    private List<Contrat> contrats;
+
+    @OneToMany
+    private List<Livraison>livraisons;
 
     public Chantier() {
     }
 
-
-    public List<Livrer> getLivrerList() {
-        return livrerList;
+    public Integer getIdChantier() {
+        return idChantier;
     }
 
-    public void setLivrerList(List<Livrer> livrerList) {
-        this.livrerList = livrerList;
+    public void setIdChantier(Integer idChantier) {
+        this.idChantier = idChantier;
     }
 
-    public Integer getId() {
-        return id;
+    public String getNomChantier() {
+        return nomChantier;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setNomChantier(String nomChantier) {
+        this.nomChantier = nomChantier;
     }
 
-    public String getNom() {
-        return nom;
+    public String getAdresseChantier() {
+        return adresseChantier;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setAdresseChantier(String adresseChantier) {
+        this.adresseChantier = adresseChantier;
     }
 
-    public String getAdresse() {
-        return adresse;
+    public String getCpChantier() {
+        return cpChantier;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setCpChantier(String cpChantier) {
+        this.cpChantier = cpChantier;
     }
 
-    public String getCp() {
-        return cp;
+    public String getVilleChantier() {
+        return villeChantier;
     }
 
-    public void setCp(String cp) {
-        this.cp = cp;
+    public void setVilleChantier(String villeChantier) {
+        this.villeChantier = villeChantier;
     }
 
-    public String getVille() {
-        return ville;
+    public String getCoordonneeChantier() {
+        return coordonneeChantier;
     }
 
-    public void setVille(String ville) {
-        this.ville = ville;
+    public void setCoordonneeChantier(String coordonneeChantier) {
+        this.coordonneeChantier = coordonneeChantier;
     }
 
-    public String getCoordonnee() {
-        return coordonnee;
+    public List<Contrat> getContrats() {
+        return contrats;
     }
 
-    public void setCoordonnee(String coordonnee) {
-        this.coordonnee = coordonnee;
+    public void setContrats(List<Contrat> contrats) {
+        this.contrats = contrats;
+    }
+
+    public List<Livraison> getLivraisons() {
+        return livraisons;
+    }
+
+    public void setLivraisons(List<Livraison> livraisons) {
+        this.livraisons = livraisons;
     }
 
     @Override
     public String toString() {
         return "Chantier{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", adresse='" + adresse + '\'' +
-                ", cp='" + cp + '\'' +
-                ", ville='" + ville + '\'' +
-                ", coordonnee='" + coordonnee + '\'' +
+                "idChantier=" + idChantier +
+                ", nomChantier='" + nomChantier + '\'' +
+                ", adresseChantier='" + adresseChantier + '\'' +
+                ", cpChantier='" + cpChantier + '\'' +
+                ", villeChantier='" + villeChantier + '\'' +
+                ", coordonneeChantier='" + coordonneeChantier + '\'' +
                 '}';
     }
 }

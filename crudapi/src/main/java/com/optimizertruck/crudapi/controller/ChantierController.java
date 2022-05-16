@@ -41,13 +41,13 @@ public class ChantierController {
         Chantier chantier = chantierRepository.findById(chantierId).
                 orElseThrow(() -> new ResourceNotFoundException
                         ("Le chantier avec l'id " + chantierId + " est introuvable"));
-        chantier.setId(chantierDetails.getId());
-        chantier.setNom(chantierDetails.getNom());
-        chantier.setAdresse(chantierDetails.getAdresse());
-        chantier.setCp(chantierDetails.getCp());
-        chantier.setVille(chantierDetails.getVille());
-        chantier.setCoordonnee(chantierDetails.getCoordonnee());
-        chantier.setLivrerList(chantier.getLivrerList());
+        // chantier.setIdChantier(chantierDetails.getIdChantier());
+        chantier.setNomChantier(chantierDetails.getNomChantier());
+        chantier.setAdresseChantier(chantierDetails.getAdresseChantier());
+        chantier.setCpChantier(chantierDetails.getCpChantier());
+        chantier.setVilleChantier(chantierDetails.getVilleChantier());
+        chantier.setCoordonneeChantier(chantierDetails.getCoordonneeChantier());
+        chantier.setLivraisons(chantier.getLivraisons());
         final Chantier updatedChantier = chantierRepository.save(chantier);
         return ResponseEntity.ok(updatedChantier);
     }

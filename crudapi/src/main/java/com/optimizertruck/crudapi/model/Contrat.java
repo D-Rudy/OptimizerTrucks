@@ -1,90 +1,65 @@
 package com.optimizertruck.crudapi.model;
 
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "contrat")
 public class Contrat {
     @Id
-    @Column(name = "id")
-    private Integer id;
+    @GeneratedValue
+    @Column(name = "num_contrat", nullable = false)
+    private Integer numContrat;
 
-    @Column(name = "date_debut")
-    private String dateDebut;
+    @Column(name = "date_debut_contrat")
+    private String dateDebutContrat;
 
-    @Column(name = "date_fin")
-    private String dateFin;
+    @Column(name = "date_fin_contrat")
+    private String dateFinContrat;
 
-    @Column(name = "qte_a_livrer")
-    private Double qteALivrer;
+    @Column(name = "qte_a_livrer_contrat")
+    private Double qteALivrerContrat;
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "clientId", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_client", nullable = false)
     private Client client;
 
-    @OneToOne
-    @JoinColumn(name = "chantierId", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_chantier", nullable = false)
     private Chantier chantier;
-
-    private String ClientId;
-
-    private Integer chantierId;
-
-
 
     public Contrat() {
     }
 
-    public String getClientId() {
-        return ClientId;
+    public Integer getNumContrat() {
+        return numContrat;
     }
 
-    public void setClientId(String clientId) {
-        ClientId = clientId;
+    public void setNumContrat(Integer numContrat) {
+        this.numContrat = numContrat;
     }
 
-    public Integer getChantierId() {
-        return chantierId;
+    public String getDateDebutContrat() {
+        return dateDebutContrat;
     }
 
-    public void setChantierId(Integer chantierId) {
-        this.chantierId = chantierId;
+    public void setDateDebutContrat(String dateDebutContrat) {
+        this.dateDebutContrat = dateDebutContrat;
     }
 
-    public Integer getId() {
-        return id;
+    public String getDateFinContrat() {
+        return dateFinContrat;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setDateFinContrat(String dateFinContrat) {
+        this.dateFinContrat = dateFinContrat;
     }
 
-    public String getDateDebut() {
-        return dateDebut;
+    public Double getQteALivrerContrat() {
+        return qteALivrerContrat;
     }
 
-    public void setDateDebut(String dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    public String getDateFin() {
-        return dateFin;
-    }
-
-    public void setDateFin(String dateFin) {
-        this.dateFin = dateFin;
-    }
-
-    public Double getQteALivrer() {
-        return qteALivrer;
-    }
-
-    public void setQteALivrer(Double qteALivrer) {
-        this.qteALivrer = qteALivrer;
+    public void setQteALivrerContrat(Double qteALivrerContrat) {
+        this.qteALivrerContrat = qteALivrerContrat;
     }
 
     public Client getClient() {
@@ -105,11 +80,11 @@ public class Contrat {
 
     @Override
     public String toString() {
-        return "Contrat{" +
-                "id=" + id +
-                ", dateDebut='" + dateDebut + '\'' +
-                ", dateFin='" + dateFin + '\'' +
-                ", qteALivrer=" + qteALivrer +
+        return "ContratDao{" +
+                "numContrat=" + numContrat +
+                ", dateDebutContrat='" + dateDebutContrat + '\'' +
+                ", dateFinContrat='" + dateFinContrat + '\'' +
+                ", qteALivrerContrat=" + qteALivrerContrat +
                 ", client=" + client +
                 ", chantier=" + chantier +
                 '}';

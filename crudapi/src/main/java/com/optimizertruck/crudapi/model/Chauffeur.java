@@ -1,111 +1,116 @@
 package com.optimizertruck.crudapi.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "chauffeur")
 public class Chauffeur {
+
     @Id
-    @Column(name = "id")
-    private String id;
-    @Column(name = "nom")
-    private String nom;
-    @Column(name = "prenom")
-    private String prenom;
-    @Column(name = "tel")
-    private String tel;
-    @Column(name = "mail")
-    private String mail;
-    @Column(name = "passwd")
-    private String passwd;
+    @GeneratedValue
+    @Column(name = "id_chauffeur", nullable = false)
+    private Integer idChauffeur;
 
-    @OneToOne
-    @JsonBackReference
-    @JoinColumn(name = "camionId", insertable = false, updatable = false)
-    private Camion camion;
+    @Column(name = "nom_chauffeur")
+    private String nomChauffeur;
 
-private String camionId;
+    @Column(name = "prenom_chauffeur")
+    private String prenomChauffeur;
 
+    @Column(name = "tel_chauffeur")
+    private String telChauffeur;
+
+    @Column(name = "mail_chauffeur")
+    private String mailChauffeur;
+
+    @Column(name = "passwd_chauffeur")
+    private String passwdChauffeur;
+
+/*    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_camion", nullable = false)
+    private Camion camion;*/
+
+    @OneToMany
+    private List<Mission> missions;
 
     public Chauffeur() {
     }
 
-    public String getCamionId() {
-        return camionId;
+    public Integer getIdChauffeur() {
+        return idChauffeur;
     }
 
-    public void setCamionId(String camionId) {
-        this.camionId = camionId;
+    public void setIdChauffeur(Integer idChauffeur) {
+        this.idChauffeur = idChauffeur;
     }
 
-    public String getId() {
-        return id;
+    public String getNomChauffeur() {
+        return nomChauffeur;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setNomChauffeur(String nomChauffeur) {
+        this.nomChauffeur = nomChauffeur;
     }
 
-    public String getNom() {
-        return nom;
+    public String getPrenomChauffeur() {
+        return prenomChauffeur;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setPrenomChauffeur(String prenomChauffeur) {
+        this.prenomChauffeur = prenomChauffeur;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getTelChauffeur() {
+        return telChauffeur;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setTelChauffeur(String telChauffeur) {
+        this.telChauffeur = telChauffeur;
     }
 
-    public String getTel() {
-        return tel;
+    public String getMailChauffeur() {
+        return mailChauffeur;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setMailChauffeur(String mailChauffeur) {
+        this.mailChauffeur = mailChauffeur;
     }
 
-    public String getMail() {
-        return mail;
+    public String getPasswdChauffeur() {
+        return passwdChauffeur;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setPasswdChauffeur(String passwdChauffeur) {
+        this.passwdChauffeur = passwdChauffeur;
     }
 
-    public String getPasswd() {
-        return passwd;
-    }
-
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
-    }
-
-    public Camion getCamion() {
+/*    public Camion getCamion() {
         return camion;
     }
 
     public void setCamion(Camion camion) {
         this.camion = camion;
+    }*/
+
+    public List<Mission> getMissions() {
+        return missions;
+    }
+
+    public void setMissions(List<Mission> missions) {
+        this.missions = missions;
     }
 
     @Override
     public String toString() {
         return "Chauffeur{" +
-                "Matricule='" + id + '\'' +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", tel='" + tel + '\'' +
-                ", mail='" + mail + '\'' +
-                ", passwd='" + passwd + '\'' +
-                ", immatriculation camion=" + camion +
+                "idChauffeur=" + idChauffeur +
+                ", nomChauffeur='" + nomChauffeur + '\'' +
+                ", prenomChauffeur='" + prenomChauffeur + '\'' +
+                ", telChauffeur='" + telChauffeur + '\'' +
+                ", mailChauffeur='" + mailChauffeur + '\'' +
+                ", passwdChauffeur='" + passwdChauffeur + '\'' /*+
+                ", camion=" + camion */+
                 '}';
     }
 }

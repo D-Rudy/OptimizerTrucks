@@ -1,87 +1,67 @@
 package com.optimizertruck.crudapi.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "mission")
 public class Mission {
+
     @Id
-    @Column(name = "id")
-    private Integer id;
+    @GeneratedValue
+    @Column(name = "id_mission", nullable = false)
+    private Integer idMission;
 
-    @Column(name = "date_heure")
-    private String dateHeure;
+    @Column(name = "date_heure_mission")
+    private String dateHeureMission;
 
-    @Column(name = "qte_a_transporter")
-    private Double qteATransporter;
+    @Column(name = "qte_a_transporter_mission")
+    private Double qteATransporterMission;
 
     @Column(name = "accepter_mission")
     private Integer accepterMission;
 
-    @ManyToOne
-    @JoinColumn(name = "logisticienId", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_logisticien", nullable = false)
     private Logisticien logisticien;
-    @ManyToOne
-    @JoinColumn(name = "chauffeurId", insertable = false, updatable = false)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_chauffeur", nullable = false)
     private Chauffeur chauffeur;
-
-    private String chauffeurId;
-
-    private String logisticienId;
 
 
     public Mission() {
     }
 
-
-    public String getLogisticienId() {
-        return logisticienId;
+    public Integer getIdMission() {
+        return idMission;
     }
 
-    public void setLogisticienId(String logisticienId) {
-        this.logisticienId = logisticienId;
+    public void setIdMission(Integer idMission) {
+        this.idMission = idMission;
     }
 
-    public String getChauffeurId() {
-        return chauffeurId;
+    public String getDateHeureMission() {
+        return dateHeureMission;
     }
 
-    public void setChauffeurId(String chauffeurId) {
-        this.chauffeurId = chauffeurId;
+    public void setDateHeureMission(String dateHeureMission) {
+        this.dateHeureMission = dateHeureMission;
     }
 
-    public Integer getId() {
-        return id;
+    public Double getQteATransporterMission() {
+        return qteATransporterMission;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDateHeure() {
-        return dateHeure;
-    }
-
-    public void setDateHeure(String dateHeure) {
-        this.dateHeure = dateHeure;
-    }
-
-    public Double getQteATransporter() {
-        return qteATransporter;
-    }
-
-    public void setQteATransporter(Double qteATransporter) {
-        this.qteATransporter = qteATransporter;
+    public void setQteATransporterMission(Double qteATransporterMission) {
+        this.qteATransporterMission = qteATransporterMission;
     }
 
     public Integer getAccepterMission() {
         return accepterMission;
     }
 
-    public void setAccepterMission(Integer accepterMission) {
-        this.accepterMission = accepterMission;
+    public void setAccepterMission(Integer accepterMissionMission) {
+        this.accepterMission = accepterMissionMission;
     }
 
     public Logisticien getLogisticien() {
@@ -103,10 +83,10 @@ public class Mission {
     @Override
     public String toString() {
         return "Mission{" +
-                "id=" + id +
-                ", date et heure='" + dateHeure + '\'' +
-                ", qteATransporter=" + qteATransporter +
-                ", accepterMission=" + accepterMission +
+                "idMission=" + idMission +
+                ", dateHeureMission='" + dateHeureMission + '\'' +
+                ", qteATransporterMission=" + qteATransporterMission +
+                ", accepterMissionMission=" + accepterMission +
                 ", logisticien=" + logisticien +
                 ", chauffeur=" + chauffeur +
                 '}';

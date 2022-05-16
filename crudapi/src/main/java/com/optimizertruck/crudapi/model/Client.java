@@ -1,132 +1,127 @@
 package com.optimizertruck.crudapi.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "client")
 public class Client {
+
     @Id
-    @Column(name = "id")
-    private String id;
+    @GeneratedValue
+    @Column(name = "id_client")
+    private Integer idClient;
 
-    @Column(name = "nom")
-    private String nom;
+    @Column(name = "nom_client")
+    private String nomClient;
 
-    @Column(name = "prenom")
-    private String prenom;
+    @Column(name = "prenom_client")
+    private String prenomClient;
 
-    @Column(name = "tel")
-    private String tel;
+    @Column(name = "tel_client")
+    private String telClient;
 
-    @Column(name = "mail")
-    private String mail;
+    @Column(name = "mail_client")
+    private String mailClient;
 
-    @Column(name = "adresse")
-    private String adresse;
+    @Column(name = "adresse_client")
+    private String adresseClient;
 
-    @Column(name = "cp")
-    private String cp;
+    @Column(name = "cp_client")
+    private String cpClient;
 
-    @Column(name = "ville")
-    private String ville;
+    @Column(name = "ville_client")
+    private String villeClient;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "client")
-    private List<Contrat> contratList;
+    @OneToMany
+    private List<Contrat> contrats;
 
     public Client() {
     }
 
-    public List<Contrat> getContratList() {
-        return contratList;
+    public Integer getIdClient() {
+        return idClient;
     }
 
-    public void setContratList(List<Contrat> contratList) {
-        this.contratList = contratList;
+    public void setIdClient(Integer idClient) {
+        this.idClient = idClient;
     }
 
-    public String getId() {
-        return id;
+    public String getNomClient() {
+        return nomClient;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setNomClient(String nomClient) {
+        this.nomClient = nomClient;
     }
 
-    public String getNom() {
-        return nom;
+    public String getPrenomClient() {
+        return prenomClient;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setPrenomClient(String prenomClient) {
+        this.prenomClient = prenomClient;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getTelClient() {
+        return telClient;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setTelClient(String telClient) {
+        this.telClient = telClient;
     }
 
-    public String getTel() {
-        return tel;
+    public String getMailClient() {
+        return mailClient;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setMailClient(String mailClient) {
+        this.mailClient = mailClient;
     }
 
-    public String getMail() {
-        return mail;
+    public String getAdresseClient() {
+        return adresseClient;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setAdresseClient(String adresseClient) {
+        this.adresseClient = adresseClient;
     }
 
-    public String getAdresse() {
-        return adresse;
+    public String getCpClient() {
+        return cpClient;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setCpClient(String cpClient) {
+        this.cpClient = cpClient;
     }
 
-    public String getCp() {
-        return cp;
+    public String getVilleClient() {
+        return villeClient;
     }
 
-    public void setCp(String cp) {
-        this.cp = cp;
+    public void setVilleClient(String villeClient) {
+        this.villeClient = villeClient;
     }
 
-    public String getVille() {
-        return ville;
+    public List<Contrat> getContrats() {
+        return contrats;
     }
 
-    public void setVille(String ville) {
-        this.ville = ville;
+    public void setContrats(List<Contrat> contrats) {
+        this.contrats = contrats;
     }
 
     @Override
     public String toString() {
         return "Client{" +
-                "Numéro Client='" + id + '\'' +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", tel='" + tel + '\'' +
-                ", mail='" + mail + '\'' +
-                ", adresse='" + adresse + '\'' +
-                ", cp='" + cp + '\'' +
-                ", ville='" + ville + '\'' +
+                "idClient=" + idClient +
+                ", nomClient='" + nomClient + '\'' +
+                ", prenomClient='" + prenomClient + '\'' +
+                ", telClient='" + telClient + '\'' +
+                ", mailClient='" + mailClient + '\'' +
+                ", adresseClient='" + adresseClient + '\'' +
+                ", cpClient='" + cpClient + '\'' +
+                ", villeClient='" + villeClient + '\'' +
                 '}';
     }
 }
-
-
-
-

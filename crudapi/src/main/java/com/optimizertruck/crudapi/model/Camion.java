@@ -9,38 +9,54 @@ import java.util.List;
 @Entity
 @Table(name = "camion")
 public class Camion {
+
     @Id
-    @Column(name = "id", nullable = false)
-    private String id;
-    @Column(name = "nettoyage")
+    @GeneratedValue
+    @Column(name = "id_camion", nullable = false)
+    private Integer idCamion;
+
+    @Column(name = "immatriculation_camion)")
+    private String immatriculation;
+
+    @Column(name = "nettoyage_camion")
     private Integer nettoyage;
-    @Column(name = "vidange")
+
+    @Column(name = "vidange_camion")
     private Integer vidange;
-    @Column(name = "remplissage")
+
+    @Column(name = "remplissage_camion")
     private Integer remplissage;
 
-    @JsonBackReference
-    @OneToOne(mappedBy = "camion")
-    @JoinColumn(name = "chauffeurId", insertable = false, updatable = false)
-    private Chauffeur chauffeur;
+    @OneToMany
+    private List<Chauffeur> chauffeurs;
 
+    @OneToMany
+    private List<Livraison> livraisons;
+
+    /*
+    CONSTRUCTEUR
+     */
     public Camion() {
     }
 
-    public Chauffeur getChauffeur() {
-        return chauffeur;
+    /*
+    GETTER/SETTER
+     */
+
+    public Integer getIdCamion() {
+        return idCamion;
     }
 
-    public void setChauffeur(Chauffeur chauffeur) {
-        this.chauffeur = chauffeur;
+    public void setIdCamion(Integer idCamion) {
+        this.idCamion = idCamion;
     }
 
-    public String getId() {
-        return id;
+    public String getImmatriculation() {
+        return immatriculation;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setImmatriculation(String immatriculation) {
+        this.immatriculation = immatriculation;
     }
 
     public Integer getNettoyage() {
@@ -67,13 +83,15 @@ public class Camion {
         this.remplissage = remplissage;
     }
 
-    @Override
-    public String toString() {
-        return "Camion{" +
-                "immatriculation='" + id + '\'' +
-                ", nettoyage=" + nettoyage + " min" +
-                ", vidange=" + vidange + " min" +
-                ", remplissage=" + remplissage + " min" +
-                '}';
+    public List<Chauffeur> getChauffeurs() {
+        return chauffeurs;
+    }
+
+    public void setChauffeurs(List<Chauffeur> chauffeurs) {
+        this.chauffeurs = chauffeurs;
+    }
+
+    public List<Livraison> getLivraisons() {
+        return livraisons;
     }
 }

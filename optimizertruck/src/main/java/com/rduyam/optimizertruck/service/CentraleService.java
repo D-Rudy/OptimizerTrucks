@@ -1,3 +1,4 @@
+
 package com.rduyam.optimizertruck.service;
 
 
@@ -12,7 +13,7 @@ public class CentraleService {
     @Autowired
     private CentraleProxy centraleProxy;
 
-    public Centrale getCentrale(final String id) {
+    public Centrale getCentrale(final Long id) {
         return centraleProxy.getCentrale(id);
     }
 
@@ -20,19 +21,19 @@ public class CentraleService {
         return centraleProxy.getAllCentrales();
     }
 
-    public void deleteCentrale(final String id) {
+    public void deleteCentrale(final Long id) {
         centraleProxy.deleteCentrale(id);
     }
 
-    public Centrale saveEmployee(Centrale centrale) {
+    public Centrale saveCentrale(Centrale centrale) {
         Centrale savedCentrale;
 
         // Functional rule : Last name must be capitalized.
-        centrale.setNom(centrale.getNom().toUpperCase());
+        centrale.setNomCentrale(centrale.getNomCentrale().toUpperCase());
 
-        if (centrale.getId() == null) {
-            // If id is null, then it is a new employee.
-            savedCentrale = centraleProxy.createEmployee(centrale);
+       if (centrale.getIdCentrale() == null) {
+            // If id is null, then it is a new centrale
+           savedCentrale = centraleProxy.createCentrale(centrale);
         } else {
             savedCentrale = centraleProxy.updateCentrale(centrale);
         }
@@ -40,3 +41,4 @@ public class CentraleService {
         return savedCentrale;
     }
 }
+

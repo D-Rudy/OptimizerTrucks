@@ -31,28 +31,25 @@ public class CentraleController {
     }
 
     @GetMapping("/updateCentrale/{id}")
-    public String updateCentrale(@PathVariable("id") final String id, Model model) {
+    public String updateCentrale(@PathVariable("id") final Long id, Model model) {
         Centrale centrale = service.getCentrale(id);
         model.addAttribute("centrale",centrale);
         return "formUpdateCentrale";
     }
 
     @GetMapping("/deleteCentrale/{id}")
-    public ModelAndView deleteCentrale(@PathVariable("id") final String id) {
+    public ModelAndView deleteCentrale(@PathVariable("id") final Long id) {
         service.deleteCentrale(id);
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/centrales");
     }
 
     @PostMapping("/saveCentrale")
     public ModelAndView saveCentrale(@ModelAttribute Centrale centrale) {
-/*        if(centrale.getId() != null) {
-            // Employee from update form has the password field not filled,
-            // so we fill it with the current password.
-            Centrale current = service.getCentrale(centrale.getId());
-            centrale.setPassword(current.getPassword());
-        }*/
-        service.saveEmployee(centrale);
-        return new ModelAndView("redirect:/");
+        if(centrale.getIdCentrale() != null) {
+            Centrale current = service.getCentrale(centrale.getIdCentrale());
+        }
+        service.saveCentrale(centrale);
+        return new ModelAndView("redirect:/centrales");
     }
 
 }

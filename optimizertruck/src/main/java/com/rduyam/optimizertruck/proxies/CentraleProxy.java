@@ -38,9 +38,9 @@ public class CentraleProxy {
         return response.getBody();
     }
 
-    public Centrale getCentrale(String id) {
+    public Centrale getCentrale(Long id) {
         String baseApiUrl = props.getApiUrl();
-        String getCentraleUrl = baseApiUrl + "/centrales/" + id;
+        String getCentraleUrl = baseApiUrl + "/centrale/" + id;
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Centrale> response = restTemplate.exchange(
@@ -56,9 +56,9 @@ public class CentraleProxy {
     }
 
 
-    public Centrale createEmployee(Centrale centrale) {
+    public Centrale createCentrale(Centrale centrale) {
         String baseApiUrl = props.getApiUrl();
-        String createCentraleUrl = baseApiUrl + "/centrales";
+        String createCentraleUrl = baseApiUrl + "/centrale";
 
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<Centrale> request = new HttpEntity<Centrale>(centrale);
@@ -76,7 +76,7 @@ public class CentraleProxy {
 
     public Centrale updateCentrale(Centrale centrale) {
         String baseApiUrl = props.getApiUrl();
-        String updateCentraleUrl = baseApiUrl + "/centrales/" + centrale.getId();
+        String updateCentraleUrl = baseApiUrl + "/centrale/" + centrale.getIdCentrale();
 
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<Centrale> request = new HttpEntity<Centrale>(centrale);
@@ -92,9 +92,9 @@ public class CentraleProxy {
     }
 
 
-    public void deleteCentrale(String id) {
+    public void deleteCentrale(Long id) {
         String baseApiUrl = props.getApiUrl();
-        String deleteCentraleUrl = baseApiUrl + "/centrales/" + id;
+        String deleteCentraleUrl = baseApiUrl + "/centrale/" + id;
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Void> response = restTemplate.exchange(

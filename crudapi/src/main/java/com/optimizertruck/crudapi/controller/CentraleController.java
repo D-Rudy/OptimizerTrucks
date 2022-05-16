@@ -2,7 +2,6 @@ package com.optimizertruck.crudapi.controller;
 
 import com.optimizertruck.crudapi.exception.ResourceNotFoundException;
 import com.optimizertruck.crudapi.model.Centrale;
-import com.optimizertruck.crudapi.repository.CentraleRepository;
 import com.optimizertruck.crudapi.service.CentraleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -25,24 +23,24 @@ public class CentraleController {
         return centraleService.getAllCentrales();
     }
 
-    @GetMapping("/centrales/{id}")
-    public ResponseEntity<Centrale> getCentraleById(@PathVariable(value = "id") String centraleId) throws ResourceNotFoundException {
+    @GetMapping("/centrale/{id}")
+    public ResponseEntity<Centrale> getCentraleById(@PathVariable(value = "id") Long centraleId) throws ResourceNotFoundException {
         Centrale centrale = centraleService.getCentrale(centraleId).orElseThrow(() -> new ResourceNotFoundException("Centrale avec l'id " + centraleId + " est introuvable"));
         return ResponseEntity.ok().body(centrale);
     }
 
-    @PostMapping("/centrales")
-    public ResponseEntity createCentrale(@Valid @RequestBody Centrale centrale) {
+    @PostMapping("/centrale")
+    public ResponseEntity createCentrale(@RequestBody Centrale centrale) {
         return new ResponseEntity(centraleService.saveCentrale(centrale), HttpStatus.CREATED);
     }
 
-    @PutMapping("/centrales/{id}")
-    public ResponseEntity<Centrale> updateCentrale(@PathVariable(value = "id") String centraleId,
+    @PutMapping("/centrale/{id}")
+    public ResponseEntity<Centrale> updateCentrale(@PathVariable(value = "id") Long centraleId,
                                                    @Valid @RequestBody Centrale centraleDetails) throws ResourceNotFoundException {
         Centrale centrale = centraleService.getCentrale(centraleId).
                 orElseThrow(() -> new ResourceNotFoundException
                         ("Centrale avec l'id " + centraleId + " est introuvable"));
-        centrale.setIdCentrale(centraleDetails.getIdCentrale());
+       // centrale.setIdCentrale(centraleDetails.getIdCentrale());
         centrale.setNomCentrale(centraleDetails.getNomCentrale());
         centrale.setTelCentrale(centraleDetails.getTelCentrale());
         centrale.setAdresseCentrale(centraleDetails.getAdresseCentrale());
@@ -54,8 +52,8 @@ public class CentraleController {
         return ResponseEntity.ok(updatedCentrale);
     }
 
-    @DeleteMapping("/centrales/{id}")
-    public Map<String, Boolean> deleteCentrale(@PathVariable(value = "id") String centraleId) throws ResourceNotFoundException {
+    @DeleteMapping("/centrale/{id}")
+    public Map<String, Boolean> deleteCentrale(@PathVariable(value = "id") Long centraleId) throws ResourceNotFoundException {
         Centrale centrale = centraleService.getCentrale(centraleId).orElseThrow(() -> new ResourceNotFoundException("Centrale avec l'id " + centraleId + " est introuvable"));
 
         centraleService.deleteCentrale(centraleId);

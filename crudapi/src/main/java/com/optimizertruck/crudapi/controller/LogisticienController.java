@@ -29,30 +29,30 @@ public class LogisticienController {
         return logisticienRepository.findAll();
     }
 
-    @GetMapping("/logisticiens/{id}")
-    public ResponseEntity<Logisticien> getLogisticienById(@PathVariable(value = "id") String logisticienId) throws ResourceNotFoundException {
+    @GetMapping("/logisticien/{id}")
+    public ResponseEntity<Logisticien> getLogisticienById(@PathVariable(value = "id") Integer logisticienId) throws ResourceNotFoundException {
         Logisticien logisticien = logisticienRepository.findById(logisticienId).orElseThrow(() -> new ResourceNotFoundException("Le logisticien avec l'id " + logisticienId + " est introuvable"));
         return ResponseEntity.ok().body(logisticien);
     }
 
-    @PostMapping("/logisticiens")
+    @PostMapping("/logisticien")
     @ResponseBody
     public ResponseEntity createLogisticien(@Valid @RequestBody Logisticien logisticien) {
         return new ResponseEntity(logisticienRepository.save(logisticien), HttpStatus.CREATED);
     }
 
-    @PutMapping("/logisticiens/{id}")
-    public ResponseEntity<Logisticien> updateLogisticien(@PathVariable(value = "id") String logisticienId,
+    @PutMapping("/logisticien/{id}")
+    public ResponseEntity<Logisticien> updateLogisticien(@PathVariable(value = "id") Integer logisticienId,
                                                          @Valid @RequestBody Logisticien logisticienDetails) throws ResourceNotFoundException {
         Logisticien logisticien = logisticienRepository.findById(logisticienId).
                 orElseThrow(() -> new ResourceNotFoundException
                         ("Le logisticien avec l'id " + logisticienId + " est introuvable"));
 
-        logisticien.setNom(logisticienDetails.getNom());
-        logisticien.setPrenom(logisticienDetails.getPrenom());
-        logisticien.setTel(logisticienDetails.getTel());
-        logisticien.setMail(logisticienDetails.getMail());
-        logisticien.setPasswd(logisticienDetails.getPasswd());
+        logisticien.setNomLogisticien(logisticienDetails.getNomLogisticien());
+        logisticien.setPrenomLogisticien(logisticienDetails.getPrenomLogisticien());
+        logisticien.setTelLogisticien(logisticienDetails.getTelLogisticien());
+        logisticien.setMailLogisticien(logisticienDetails.getMailLogisticien());
+        logisticien.setPasswdLogisticien(logisticienDetails.getPasswdLogisticien());
         logisticien.setResponsable(logisticienDetails.getResponsable());
 
         final Logisticien updatedLogisticien = logisticienRepository.save(logisticien);
@@ -60,7 +60,7 @@ public class LogisticienController {
     }
 
     @DeleteMapping("/logisticiens/{id}")
-    public Map<String, Boolean> deleteLogisticien(@PathVariable(value = "id") String logisticienId) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteLogisticien(@PathVariable(value = "id") Integer logisticienId) throws ResourceNotFoundException {
         Logisticien logisticien = logisticienRepository.findById(logisticienId).orElseThrow(() -> new ResourceNotFoundException("Le logisticien avec l'id " + logisticienId + " est introuvable"));
 
         logisticienRepository.delete(logisticien);
@@ -68,17 +68,5 @@ public class LogisticienController {
         response.put("supprimé", Boolean.TRUE);
         return response;
     }
-/*     @Autowired
-    private LogisticienService logisticienService;
-
-   public LogisticienController(LogisticienService logisticienService) {
-
-        this.logisticienService = logisticienService;
-    }
-
-    @GetMapping(path = "/logisticiens/{id}")
-    public Logisticien getLogisticien(@PathVariable("id") String matricule) {
-        return logisticienService.getLogisticien(matricule);
-    }*/
 }
 

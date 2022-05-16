@@ -26,27 +26,27 @@ public class ContratController {
         return contratRepository.findAll();
     }
 
-    @GetMapping("/contrats/{id}")
+    @GetMapping("/contrat/{id}")
     public ResponseEntity<Contrat> getContratById(@PathVariable(value = "id") Integer contratId) throws ResourceNotFoundException {
         Contrat contrat = contratRepository.findById(contratId).orElseThrow(() -> new ResourceNotFoundException("Le contrat avec l'id " + contratId + " est introuvable"));
         return ResponseEntity.ok().body(contrat);
     }
 
-    @PostMapping("/contrats")
+    @PostMapping("/contrat")
     public ResponseEntity createContrat(@Valid @RequestBody Contrat contrat) {
         return new ResponseEntity(contratRepository.save(contrat), HttpStatus.CREATED);
     }
 
-    @PutMapping("/contrats/{id}")
+    @PutMapping("/contrat/{id}")
     public ResponseEntity<Contrat> updateContrat(@PathVariable(value = "id") Integer contratId,
                                                  @Valid @RequestBody Contrat contratDetails) throws ResourceNotFoundException {
         Contrat contrat = contratRepository.findById(contratId).
                 orElseThrow(() -> new ResourceNotFoundException
                         ("Le contrat avec l'id " + contratId + " est introuvable"));
-        contrat.setId(contratDetails.getId());
-        contrat.setDateDebut(contratDetails.getDateDebut());
-        contrat.setDateFin(contratDetails.getDateFin());
-        contrat.setQteALivrer(contratDetails.getQteALivrer());
+        //contrat.setId(contratDetails.getId());
+        contrat.setDateDebutContrat(contratDetails.getDateDebutContrat());
+        contrat.setDateFinContrat(contratDetails.getDateFinContrat());
+        contrat.setQteALivrerContrat(contratDetails.getQteALivrerContrat());
         contrat.setClient(contratDetails.getClient());
         contrat.setChantier(contratDetails.getChantier());
         contrat.setClient(contratDetails.getClient());
@@ -54,7 +54,7 @@ public class ContratController {
         return ResponseEntity.ok(updatedContrat);
     }
 
-    @DeleteMapping("/contrats/{id}")
+    @DeleteMapping("/contrat/{id}")
     public Map<String, Boolean> deleteContrat(@PathVariable(value = "id") Integer contratId) throws ResourceNotFoundException {
         Contrat contrat = contratRepository.findById(contratId).orElseThrow(() -> new ResourceNotFoundException("Le contrat avec l'id " + contratId + " est introuvable"));
 

@@ -1,45 +1,89 @@
 package com.optimizertruck.crudapi.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.util.List;
-
 
 @Entity
 @Table(name = "responsable")
 public class Responsable {
-    @Id
-    @Column(name = "id")
-    private String id;
-    @Column(name = "nom")
-    private String nom;
-    @Column(name = "prenom")
-    private String prenom;
-    @Column(name = "tel")
-    private String tel;
-    @Column(name = "mail")
-    private String mail;
-    @Column(name = "passwd")
-    private String passwd;
 
-    @OneToMany(mappedBy = "responsable")
-    private List<Logisticien> logisticienList;
-    @OneToOne
-    @JoinColumn(name = "centraleId", insertable = false, updatable = false)
+    @Id
+    @GeneratedValue
+    @Column(name = "id_responsable", nullable = false)
+    private Integer idResponsable;
+
+    @Column(name = "nom_responsable")
+    private String nomResponsable;
+
+    @Column(name = "prenom_responsable")
+    private String prenomResponsable;
+
+    @Column(name = "tel_responsable")
+    private String telResponsable;
+
+    @Column(name = "mail_responsable")
+    private String mailResponsable;
+
+    @Column(name = "passwd_responsable")
+    private String passwdResponsable;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_centrale", nullable = false)
     private Centrale centrale;
 
-    private String centraleId;
+    @OneToMany
+    private List<Logisticien> logisticiens;
+
 
     public Responsable() {
     }
 
-    public String getCentraleId() {
-        return centraleId;
+    public Integer getIdResponsable() {
+        return idResponsable;
     }
 
-    public void setCentraleId(String centraleId) {
-        this.centraleId = centraleId;
+    public void setIdResponsable(Integer idResponsable) {
+        this.idResponsable = idResponsable;
+    }
+
+    public String getNomResponsable() {
+        return nomResponsable;
+    }
+
+    public void setNomResponsable(String nomResponsable) {
+        this.nomResponsable = nomResponsable;
+    }
+
+    public String getPrenomResponsable() {
+        return prenomResponsable;
+    }
+
+    public void setPrenomResponsable(String prenomResponsable) {
+        this.prenomResponsable = prenomResponsable;
+    }
+
+    public String getTelResponsable() {
+        return telResponsable;
+    }
+
+    public void setTelResponsable(String telResponsable) {
+        this.telResponsable = telResponsable;
+    }
+
+    public String getMailResponsable() {
+        return mailResponsable;
+    }
+
+    public void setMailResponsable(String mailResponsable) {
+        this.mailResponsable = mailResponsable;
+    }
+
+    public String getPasswdResponsable() {
+        return passwdResponsable;
+    }
+
+    public void setPasswdResponsable(String passwdResponsable) {
+        this.passwdResponsable = passwdResponsable;
     }
 
     public Centrale getCentrale() {
@@ -50,72 +94,25 @@ public class Responsable {
         this.centrale = centrale;
     }
 
-    public String getId() {
-        return id;
+    public List<Logisticien> getLogisticiens() {
+        return logisticiens;
     }
 
-    public void setId(String matricule) {
-        this.id = matricule;
+    public void setLogisticiens(List<Logisticien> logisticiens) {
+        this.logisticiens = logisticiens;
     }
 
-    public String getNom() {
-        return nom;
-    }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getPasswd() {
-        return passwd;
-    }
-
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
-    }
-
-    public List<Logisticien> getLogisticienList() {
-        return logisticienList;
-    }
-
-    public void setLogisticienList(List<Logisticien> logisticienList) {
-        this.logisticienList = logisticienList;
-    }
 
     @Override
     public String toString() {
         return "Responsable{" +
-                "id='" + id + '\'' +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", tel='" + tel + '\'' +
-                ", mail='" + mail + '\'' +
-                ", passwd='" + passwd + '\'' +
-                ", logisticienList=" + logisticienList +
+                "idResponsable=" + idResponsable +
+                ", nomResponsable='" + nomResponsable + '\'' +
+                ", prenomResponsable='" + prenomResponsable + '\'' +
+                ", telResponsable='" + telResponsable + '\'' +
+                ", mailResponsable='" + mailResponsable + '\'' +
+                ", passwdResponsable='" + passwdResponsable + '\'' +
                 ", centrale=" + centrale +
                 '}';
     }

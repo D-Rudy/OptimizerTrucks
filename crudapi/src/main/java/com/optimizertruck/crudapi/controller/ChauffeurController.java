@@ -26,36 +26,36 @@ public class ChauffeurController {
         return chauffeurRepository.findAll();
     }
 
-    @GetMapping("/chauffeurs/{id}")
-    public ResponseEntity<Chauffeur> getChauffeurById(@PathVariable(value = "id") String chauffeurId) throws ResourceNotFoundException {
+    @GetMapping("/chauffeur/{id}")
+    public ResponseEntity<Chauffeur> getChauffeurById(@PathVariable(value = "id") Integer chauffeurId) throws ResourceNotFoundException {
         Chauffeur chauffeur = chauffeurRepository.findById(chauffeurId).orElseThrow(() -> new ResourceNotFoundException("Le Chauffeur avec l'id " + chauffeurId + " est introuvable"));
         return ResponseEntity.ok().body(chauffeur);
     }
 
-    @PostMapping("/chauffeurs")
+    @PostMapping("/chauffeur")
     public Chauffeur createChauffeur(@Valid @RequestBody Chauffeur chauffeur) {
         return chauffeurRepository.save(chauffeur);
     }
 
-    @PutMapping("/chauffeurs/{id}")
-    public ResponseEntity<Chauffeur> updateChauffeur(@PathVariable(value = "id") String chauffeurId,
+    @PutMapping("/chauffeur/{id}")
+    public ResponseEntity<Chauffeur> updateChauffeur(@PathVariable(value = "id") Integer chauffeurId,
                                                    @Valid @RequestBody Chauffeur chauffeurDetails) throws ResourceNotFoundException {
         Chauffeur chauffeur = chauffeurRepository.findById(chauffeurId).
                 orElseThrow(() -> new ResourceNotFoundException
                         ("Le Chauffeur avec l'id " + chauffeurId + " est introuvable"));
-        chauffeur.setId(chauffeurDetails.getId());
-        chauffeur.setNom(chauffeurDetails.getNom());
-        chauffeur.setPrenom(chauffeurDetails.getPrenom());
-        chauffeur.setTel(chauffeurDetails.getTel());
-        chauffeur.setMail(chauffeurDetails.getMail());
-        chauffeur.setPasswd(chauffeurDetails.getPasswd());
-        chauffeur.setCamion(chauffeurDetails.getCamion());
+        //chauffeur.setId(chauffeurDetails.getId());
+        chauffeur.setNomChauffeur(chauffeurDetails.getNomChauffeur());
+        chauffeur.setPrenomChauffeur(chauffeurDetails.getPrenomChauffeur());
+        chauffeur.setTelChauffeur(chauffeurDetails.getTelChauffeur());
+        chauffeur.setMailChauffeur(chauffeurDetails.getMailChauffeur());
+        chauffeur.setPasswdChauffeur(chauffeurDetails.getPasswdChauffeur());
+        //chauffeur.setCamion(chauffeurDetails.getCamion());
         final Chauffeur updatedChauffeur = chauffeurRepository.save(chauffeur);
         return ResponseEntity.ok(updatedChauffeur);
     }
 
     @DeleteMapping("/chauffeurs/{id}")
-    public Map<String, Boolean> deleteChauffeur(@PathVariable(value = "id") String chauffeurId) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteChauffeur(@PathVariable(value = "id") Integer chauffeurId) throws ResourceNotFoundException {
         Chauffeur chauffeur = chauffeurRepository.findById(chauffeurId).orElseThrow(() -> new ResourceNotFoundException("Le Chauffeur avec l'id " + chauffeurId + " est introuvable"));
 
         chauffeurRepository.delete(chauffeur);

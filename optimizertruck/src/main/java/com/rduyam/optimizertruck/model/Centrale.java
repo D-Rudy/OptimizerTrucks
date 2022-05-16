@@ -1,117 +1,95 @@
 package com.rduyam.optimizertruck.model;
 
 
-import lombok.Data;
-import org.springframework.context.annotation.Bean;
-
-@Data
 public class Centrale {
 
-    private String id;
+    private Long idCentrale;
 
-    private String nom;
+    private String nomCentrale;
 
-    private String tel;
+    private String telCentrale;
 
-    private String adresse;
+    private String adresseCentrale;
 
-    private String cp;
+    private String cpCentrale;
 
-    private String ville;
+    private String villeCentrale;
 
-    private String coordonne;
+    private String coordonneCentrale;
 
-/*    private int capaciteProd;*/
+    private Integer capaciteProd;
 
+    private Responsable responsable;
 
-
-    public Centrale() {
+    public Long getIdCentrale() {
+        return idCentrale;
     }
 
-    public String getId() {
-        return id;
+    public void setIdCentrale(Long idCentrale) {
+        this.idCentrale = idCentrale;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getNomCentrale() {
+        return nomCentrale;
     }
 
-    public String getNom() {
-        return nom;
+    public void setNomCentrale(String nomCentrale) {
+        this.nomCentrale = nomCentrale;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public String getTelCentrale() {
+        return telCentrale;
     }
 
-    public String getTel() {
-        return tel;
+    public void setTelCentrale(String telCentrale) {
+        this.telCentrale = telCentrale;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public String getAdresseCentrale() {
+        return adresseCentrale;
     }
 
-    public String getAdresse() {
-        return adresse;
+    public void setAdresseCentrale(String adresseCentrale) {
+        this.adresseCentrale = adresseCentrale;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public String getCpCentrale() {
+        return cpCentrale;
     }
 
-    public String getCp() {
-        return cp;
+    public void setCpCentrale(String cpCentrale) {
+        this.cpCentrale = cpCentrale;
     }
 
-    public void setCp(String cp) {
-        this.cp = cp;
+    public String getVilleCentrale() {
+        return villeCentrale;
     }
 
-    public String getVille() {
-        return ville;
+    public void setVilleCentrale(String villeCentrale) {
+        this.villeCentrale = villeCentrale;
     }
 
-    public void setVille(String ville) {
-        this.ville = ville;
+    public String getCoordonneCentrale() {
+        return coordonneCentrale;
     }
 
-    public String getCoordonne() {
-        return coordonne;
+    public void setCoordonneCentrale(String coordonneCentrale) {
+        this.coordonneCentrale = coordonneCentrale;
     }
 
-    public void setCoordonne(String coordonne) {
-        this.coordonne = coordonne;
-    }
-
-/*    public int getCapaciteProd() {
+    public Integer getCapaciteProd() {
         return capaciteProd;
     }
 
-    public void setCapaciteProd(int capaciteProd) {
+    public void setCapaciteProd(Integer capaciteProd) {
         this.capaciteProd = capaciteProd;
-    }*/
+    }
 
-/*    public Responsable getResponsable() {
+    public Responsable getResponsable() {
         return responsable;
     }
 
     public void setResponsable(Responsable responsable) {
         this.responsable = responsable;
-    }*/
-
-    @Override
-    public String toString() {
-        return "Centrale{" +
-                "id='" + id + '\'' +
-                ", nom='" + nom + '\'' +
-                ", tel='" + tel + '\'' +
-                ", adresse='" + adresse + '\'' +
-                ", cp='" + cp + '\'' +
-                ", ville='" + ville + '\'' +
-                ", coordonne='" + coordonne + '\'' +
-                /*", capaciteProd=" + capaciteProd +*/
-                /*", responsable=" + responsable +*/
-                '}';
     }
 }

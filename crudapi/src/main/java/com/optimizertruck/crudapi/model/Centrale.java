@@ -1,97 +1,100 @@
 package com.optimizertruck.crudapi.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "centrale")
 public class Centrale {
 
-
     @Id
-    private String id;
-    private String nom;
-    private String tel;
-    private String adresse;
-    private String cp;
-    private String ville;
-    private String coordonne;
-    private int capaciteProd;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_centrale", nullable = false)
+    private Long idCentrale;
 
+    @Column(name = "nom_centrale")
+    private String nomCentrale;
 
-/*    @JsonBackReference
-    @OneToOne(mappedBy = "centrale")
-    private Responsable responsable;*/
+    @Column(name = "tel_centrale")
+    private String telCentrale;
 
+    @Column(name = "adresse_centrale")
+    private String adresseCentrale;
+
+    @Column(name = "cp_centrale")
+    private String cpCentrale;
+
+    @Column(name = "ville_centrale")
+    private String villeCentrale;
+
+    @Column(name = "coordonne_centrale")
+    private String coordonneCentrale;
+
+    @Column(name = "capacite_prod")
+    private Integer capaciteProd;
+/*
+    @OneToMany
+    private List<Responsable> responsables;*/
 
     public Centrale() {
-
     }
 
-    public String getIdCentrale() {
-        return id;
+    public Long getIdCentrale() {
+        return idCentrale;
     }
 
-    public void setIdCentrale(String idCentrale) {
-        this.id = idCentrale;
+    public void setIdCentrale(Long idCentrale) {
+        this.idCentrale = idCentrale;
     }
-/*
-    public void setCapaciteProd(int capaciteProd) {
-        this.capaciteProd = capaciteProd;
-    }*/
 
-    @Column(name = "nom", nullable = false)
     public String getNomCentrale() {
-        return nom;
+        return nomCentrale;
     }
 
     public void setNomCentrale(String nomCentrale) {
-        this.nom = nomCentrale;
+        this.nomCentrale = nomCentrale;
     }
-    @Column(name = "tel")
+
     public String getTelCentrale() {
-        return tel;
+        return telCentrale;
     }
 
     public void setTelCentrale(String telCentrale) {
-        this.tel = telCentrale;
+        this.telCentrale = telCentrale;
     }
-    @Column(name = "adresse", nullable = false)
+
     public String getAdresseCentrale() {
-        return adresse;
+        return adresseCentrale;
     }
 
     public void setAdresseCentrale(String adresseCentrale) {
-        this.adresse = adresseCentrale;
+        this.adresseCentrale = adresseCentrale;
     }
-    @Column(name = "cp", nullable = false)
+
     public String getCpCentrale() {
-        return cp;
+        return cpCentrale;
     }
 
     public void setCpCentrale(String cpCentrale) {
-        this.cp = cpCentrale;
+        this.cpCentrale = cpCentrale;
     }
-    @Column(name = "ville", nullable = false)
+
     public String getVilleCentrale() {
-        return ville;
+        return villeCentrale;
     }
 
     public void setVilleCentrale(String villeCentrale) {
-        this.ville = villeCentrale;
+        this.villeCentrale = villeCentrale;
     }
-    @Column(name = "coordonne", nullable = false)
+
     public String getCoordonneCentrale() {
-        return coordonne;
+        return coordonneCentrale;
     }
 
     public void setCoordonneCentrale(String coordonneCentrale) {
-        this.coordonne = coordonneCentrale;
+        this.coordonneCentrale = coordonneCentrale;
     }
-    @Column(name = "capacite-prod")
+
     public Integer getCapaciteProd() {
         return capaciteProd;
     }
@@ -100,17 +103,24 @@ public class Centrale {
         this.capaciteProd = capaciteProd;
     }
 
+    /*public List<Responsable> getResponsables() {
+        return responsables;
+    }
 
-    @Override
+    public void setResponsables(List<Responsable> responsables) {
+        this.responsables = responsables;
+    }
+
+    */@Override
     public String toString() {
         return "Centrale{" +
-                "id='" + id + '\'' +
-                ", nomCentrale='" + nom + '\'' +
-                ", telCentrale='" + tel + '\'' +
-                ", adresseCentrale='" + adresse + '\'' +
-                ", cpCentrale='" + cp + '\'' +
-                ", villeCentrale='" + ville + '\'' +
-                ", coordonneCentrale='" + coordonne + '\'' +
+                "idCentrale=" + idCentrale +
+                ", nomCentrale='" + nomCentrale + '\'' +
+                ", telCentrale='" + telCentrale + '\'' +
+                ", adresseCentrale='" + adresseCentrale + '\'' +
+                ", cpCentrale='" + cpCentrale + '\'' +
+                ", villeCentrale='" + villeCentrale + '\'' +
+                ", coordonneCentrale='" + coordonneCentrale + '\'' +
                 ", capaciteProd=" + capaciteProd +
                 '}';
     }

@@ -1,34 +1,87 @@
 package com.optimizertruck.crudapi.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "logisticien")
 public class Logisticien {
     @Id
-    @Column(name = "id")
-    private String id;
-    @Column(name = "nom")
-    private String nom;
-    @Column(name = "prenom")
-    private String prenom;
-    @Column(name = "tel")
-    private String tel;
-    @Column(name = "mail")
-    private String mail;
-    @Column(name = "passwd")
-    private String passwd;
+    @GeneratedValue
+    @Column(name = "id_logisticien", nullable = false)
+    private Integer idLogisticien;
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "responsableId", insertable = false, updatable = false)
+    @Column(name = "nom_logisticien")
+    private String nomLogisticien;
+
+    @Column(name = "prenom_logisticien")
+    private String prenomLogisticien;
+
+    @Column(name = "tel_logisticien")
+    private String telLogisticien;
+
+    @Column(name = "mail_logisticien")
+    private String mailLogisticien;
+
+    @Column(name = "passwd_logisticien")
+    private String passwdLogisticien;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_responsable", nullable = false)
     private Responsable responsable;
 
-    private String responsableId;
+    @OneToMany
+    private List<Mission> missions;
 
     public Logisticien() {
+    }
+
+    public Integer getIdLogisticien() {
+        return idLogisticien;
+    }
+
+    public void setIdLogisticien(Integer idLogisticien) {
+        this.idLogisticien = idLogisticien;
+    }
+
+    public String getNomLogisticien() {
+        return nomLogisticien;
+    }
+
+    public void setNomLogisticien(String nomLogisticien) {
+        this.nomLogisticien = nomLogisticien;
+    }
+
+    public String getPrenomLogisticien() {
+        return prenomLogisticien;
+    }
+
+    public void setPrenomLogisticien(String prenomLogisticien) {
+        this.prenomLogisticien = prenomLogisticien;
+    }
+
+    public String getTelLogisticien() {
+        return telLogisticien;
+    }
+
+    public void setTelLogisticien(String telLogisticien) {
+        this.telLogisticien = telLogisticien;
+    }
+
+    public String getMailLogisticien() {
+        return mailLogisticien;
+    }
+
+    public void setMailLogisticien(String mailLogisticien) {
+        this.mailLogisticien = mailLogisticien;
+    }
+
+    public String getPasswdLogisticien() {
+        return passwdLogisticien;
+    }
+
+    public void setPasswdLogisticien(String passwdLogisticien) {
+        this.passwdLogisticien = passwdLogisticien;
     }
 
     public Responsable getResponsable() {
@@ -39,71 +92,23 @@ public class Logisticien {
         this.responsable = responsable;
     }
 
-    public String getId() {
-        return id;
+    public List<Mission> getMissions() {
+        return missions;
     }
 
-    public void setId(String matricule) {
-        this.id = matricule;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getPasswd() {
-        return passwd;
-    }
-
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
-    }
-
-    public String getResponsableId() {
-        return responsableId;
-    }
-
-    public void setResponsableId(String responsableId) {
-        this.responsableId = responsableId;
+    public void setMissions(List<Mission> missions) {
+        this.missions = missions;
     }
 
     @Override
     public String toString() {
         return "Logisticien{" +
-                "Matricule='" + id + '\'' +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", tel='" + tel + '\'' +
-                ", mail='" + mail + '\'' +
-                ", passwd='" + passwd + '\'' +
+                "idLogisticien=" + idLogisticien +
+                ", nomLogisticien='" + nomLogisticien + '\'' +
+                ", prenomLogisticien='" + prenomLogisticien + '\'' +
+                ", telLogisticien='" + telLogisticien + '\'' +
+                ", mailLogisticien='" + mailLogisticien + '\'' +
+                ", passwdLogisticien='" + passwdLogisticien + '\'' +
                 ", responsable=" + responsable +
                 '}';
     }

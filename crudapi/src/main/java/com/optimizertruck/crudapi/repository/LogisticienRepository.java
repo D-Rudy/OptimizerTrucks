@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 @Repository
-public interface LogisticienRepository extends JpaRepository<Logisticien, String> {
+public interface LogisticienRepository extends JpaRepository<Logisticien, Integer> {
 
 
 /*    @Query("select l from Logisticien l where l.id = ?1")

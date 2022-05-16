@@ -1,8 +1,8 @@
+
 package com.optimizertruck.crudapi.service;
 
 
 import com.optimizertruck.crudapi.model.Centrale;
-import com.optimizertruck.crudapi.repository.CentraleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,18 +11,20 @@ import java.util.Optional;
 @Service
 public class CentraleService {
 
+
     @Autowired
-    CentraleRepository centraleRepository;
+    com.optimizertruck.crudapi.repository.CentraleRepository centraleRepository;
+
 
     public Iterable<Centrale> getAllCentrales() {
         return centraleRepository.findAll();
     }
 
-    public Optional<Centrale> getCentrale(final String id) {
+    public Optional<Centrale> getCentrale(final Long id) {
         return centraleRepository.findById(id);
     }
 
-    public void deleteCentrale(final String id) {
+    public void deleteCentrale(final Long id) {
         centraleRepository.deleteById(id);
     }
 
@@ -32,3 +34,4 @@ public class CentraleService {
     }
 
 }
+

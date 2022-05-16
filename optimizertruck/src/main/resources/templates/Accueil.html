@@ -50,21 +50,21 @@
             </tr>
             </thead>
             <tbody>
-<!--            <tr th:if="${centrales.empty}">
+-           <tr th:if="${centrales.empty}">
                 <td colspan="3">Aucune centrale en base de données</td>
-            </tr>-->
+            </tr>
             <tr th:each="centrale: ${centrales}">
-                <td><span th:text="${centrale}"> Id </span></td>
-               <!-- <td><span th:text="${centrale.getCapaciteProd()}"> Nom </span></td>-->
+                <td><span th:text="${centrale.idCentrale}"> Id </span></td>
+               <td><span th:text="${centrale.nomCentrale}"> Nom </span></td>
                 <td>
-                    <a th:href="@{/updateCentrale/{id}(id=${centrale.id})}"><button class="btn btn-info">Modifier</button></a>
-                    <a th:href="@{/deleteCentrale/{id}(id=${centrale.id})}"><button class="btn btn-danger">Supprimer</button></a>
+                    <a th:href="@{/updateCentrale/{id}(id=${centrale.idCentrale})}"><button class="btn btn-info">Modifier</button></a>
+                    <a th:href="@{/deleteCentrale/{id}(id=${centrale.idCentrale})}"><button class="btn btn-danger">Supprimer</button></a>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <h4><a th:href="@{/createEmployee}">Ajouter une nouvelle centrale</a></h4>
+    <h4><a th:href="@{/createCentrale}">Ajouter une nouvelle centrale</a></h4>
 
 </div>
 

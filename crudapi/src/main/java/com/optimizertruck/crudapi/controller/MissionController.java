@@ -23,26 +23,26 @@ public class MissionController {
         return missionRepository.findAll();
     }
 
-    @GetMapping("/missions/{id}")
+    @GetMapping("/mission/{id}")
     public ResponseEntity<Mission> getMissionById(@PathVariable(value = "id") Integer missionId) throws ResourceNotFoundException {
         Mission mission = missionRepository.findById(missionId).orElseThrow(() -> new ResourceNotFoundException("La mission avec l'id " + missionId + " est introuvable"));
         return ResponseEntity.ok().body(mission);
     }
 
-    @PostMapping("/missions")
+    @PostMapping("/mission")
     public Mission createMission(@Valid @RequestBody Mission mission) {
         return missionRepository.save(mission);
     }
 
-    @PutMapping("/missions/{id}")
+    @PutMapping("/mission/{id}")
     public ResponseEntity<Mission> updateMission(@PathVariable(value = "id") Integer missionId,
                                                  @Valid @RequestBody Mission missionDetails) throws ResourceNotFoundException {
         Mission mission = missionRepository.findById(missionId).
                 orElseThrow(() -> new ResourceNotFoundException
                         ("La mission avec l'id " + missionId + " est introuvable"));
-        mission.setId(missionDetails.getId());
-        mission.setDateHeure(missionDetails.getDateHeure());
-        mission.setQteATransporter(missionDetails.getQteATransporter());
+        //mission.setId(missionDetails.getId());
+        mission.setDateHeureMission(missionDetails.getDateHeureMission());
+        mission.setQteATransporterMission(missionDetails.getQteATransporterMission());
         mission.setAccepterMission(missionDetails.getAccepterMission());
         mission.setLogisticien(missionDetails.getLogisticien());
         mission.setChauffeur(missionDetails.getChauffeur());
@@ -51,7 +51,7 @@ public class MissionController {
         return ResponseEntity.ok(updatedClient);
     }
 
-    @DeleteMapping("/missions/{id}")
+    @DeleteMapping("/mission/{id}")
     public Map<String, Boolean> deleteMission(@PathVariable(value = "id") Integer missionId) throws ResourceNotFoundException {
         Mission mission = missionRepository.findById(missionId).orElseThrow(() -> new ResourceNotFoundException("La mission avec l'id " + missionId + " est introuvable"));
 

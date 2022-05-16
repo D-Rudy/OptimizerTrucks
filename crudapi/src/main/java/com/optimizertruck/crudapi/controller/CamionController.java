@@ -26,7 +26,7 @@ public class CamionController {
     }
 
     @GetMapping("/camions/{id}")
-    public ResponseEntity<Camion> getCamionById(@PathVariable(value = "id") String camionId) throws ResourceNotFoundException {
+    public ResponseEntity<Camion> getCamionById(@PathVariable(value = "id") Integer camionId) throws ResourceNotFoundException {
         Camion camion = camionRepository.findById(camionId).orElseThrow(() -> new ResourceNotFoundException("Le camion avec l'id " + camionId + " est introuvable"));
         return ResponseEntity.ok().body(camion);
     }
@@ -37,12 +37,12 @@ public class CamionController {
     }
 
     @PutMapping("/camions/{id}")
-    public ResponseEntity<Camion> updateCamion(@PathVariable(value = "id") String camionId,
+    public ResponseEntity<Camion> updateCamion(@PathVariable(value = "id") Integer camionId,
                                                @Valid @RequestBody Camion camionDetails) throws ResourceNotFoundException {
         Camion camion = camionRepository.findById(camionId).
                 orElseThrow(() -> new ResourceNotFoundException
                         ("Le camion avec l'id " + camionId + " est introuvable"));
-        camion.setId(camionDetails.getId());
+        //camion.setIdCamion(camionDetails.getIdCamion());
         camion.setNettoyage(camionDetails.getNettoyage());
         camion.setVidange(camionDetails.getVidange());
         camion.setRemplissage(camionDetails.getRemplissage());
@@ -51,7 +51,7 @@ public class CamionController {
     }
 
     @DeleteMapping("/camions/{id}")
-    public Map<String, Boolean> deleteCamion(@PathVariable(value = "id") String camionId) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteCamion(@PathVariable(value = "id") Integer camionId) throws ResourceNotFoundException {
         Camion camion = camionRepository.findById(camionId).orElseThrow(() -> new ResourceNotFoundException("Le camion avec l'id " + camionId + " est introuvable"));
 
         camionRepository.delete(camion);
