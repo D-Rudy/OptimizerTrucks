@@ -21,10 +21,10 @@ public class ResponsableProxy {
     private CustomProperties props;
 
 
-    public Iterable<Responsable> getAllResponsable() {
+    public Iterable<Responsable> getAllResponsables() {
 
         String baseApiUrl = props.getApiUrl();
-        String getResponsableUrl = baseApiUrl + "/centrales";
+        String getResponsableUrl = baseApiUrl + "/responsables";
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Iterable<Responsable>> response = restTemplate.exchange(
@@ -41,7 +41,7 @@ public class ResponsableProxy {
 
     public Responsable getResponsable(Long id) {
         String baseApiUrl = props.getApiUrl();
-        String getResponsableUrl = baseApiUrl + "/centrale/" + id;
+        String getResponsableUrl = baseApiUrl + "/responsable/" + id;
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Responsable> response = restTemplate.exchange(
@@ -57,9 +57,9 @@ public class ResponsableProxy {
     }
 
 
-    public Responsable createCentrale(Responsable responsable) {
+    public Responsable createResponsable(Responsable responsable) {
         String baseApiUrl = props.getApiUrl();
-        String createResponsableUrl = baseApiUrl + "/centrale";
+        String createResponsableUrl = baseApiUrl + "/responsable";
 
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<Responsable> request = new HttpEntity<Responsable>(responsable);
@@ -69,42 +69,42 @@ public class ResponsableProxy {
                 request,
                 Responsable.class);
 
-        log.debug("Create Centrale call " + response.getStatusCode().toString());
+        log.debug("Create Responsable call " + response.getStatusCode().toString());
 
         return response.getBody();
     }
 
 
-    public Centrale updateCentrale(Centrale centrale) {
+    public Responsable updateResponsable(Responsable responsable) {
         String baseApiUrl = props.getApiUrl();
-        String updateCentraleUrl = baseApiUrl + "/centrale/" + centrale.getIdCentrale();
+        String updateResponsableUrl = baseApiUrl + "/responsable/" + responsable.getIdResponsable();
 
         RestTemplate restTemplate = new RestTemplate();
-        HttpEntity<Centrale> request = new HttpEntity<Centrale>(centrale);
-        ResponseEntity<Centrale> response = restTemplate.exchange(
-                updateCentraleUrl,
+        HttpEntity<Responsable> request = new HttpEntity<Responsable>(responsable);
+        ResponseEntity<Responsable> response = restTemplate.exchange(
+                updateResponsableUrl,
                 HttpMethod.PUT,
                 request,
-                Centrale.class);
+                Responsable.class);
 
-        log.debug("Update Centrale call " + response.getStatusCode().toString());
+        log.debug("Update Responsable call " + response.getStatusCode().toString());
 
         return response.getBody();
     }
 
 
-    public void deleteCentrale(Long id) {
+    public void deleteResponsable(Long id) {
         String baseApiUrl = props.getApiUrl();
-        String deleteCentraleUrl = baseApiUrl + "/centrale/" + id;
+        String deleteResponsableUrl = baseApiUrl + "/responsable/" + id;
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Void> response = restTemplate.exchange(
-                deleteCentraleUrl,
+                deleteResponsableUrl,
                 HttpMethod.DELETE,
                 null,
                 Void.class);
 
-        log.debug("Delete Centrale call " + response.getStatusCode().toString());
+        log.debug("Delete Responsable call " + response.getStatusCode().toString());
     }
 
 }

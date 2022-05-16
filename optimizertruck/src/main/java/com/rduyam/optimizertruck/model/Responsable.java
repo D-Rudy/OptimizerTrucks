@@ -2,23 +2,71 @@ package com.rduyam.optimizertruck.model;
 
 import java.util.List;
 
-public class Responsable extends Employe {
+public class Responsable {
 
-    private List<Logisticien> logisticienList;
+    private Long idResponsable;
+
+    private String nomResponsable;
+
+    private String prenomResponsable;
+
+    private String telResponsable;
+
+    private String mailResponsable;
+
+    private String passwdResponsable;
 
     private Centrale centrale;
-
-    private String centraleId;
 
     public Responsable() {
     }
 
-    public List<Logisticien> getLogisticienList() {
-        return logisticienList;
+    public Long getIdResponsable() {
+        return idResponsable;
     }
 
-    public void setLogisticienList(List<Logisticien> logisticienList) {
-        this.logisticienList = logisticienList;
+    public void setIdResponsable(Long idResponsable) {
+        this.idResponsable = idResponsable;
+    }
+
+    public String getNomResponsable() {
+        return nomResponsable;
+    }
+
+    public void setNomResponsable(String nomResponsable) {
+        this.nomResponsable = nomResponsable;
+    }
+
+    public String getPrenomResponsable() {
+        return prenomResponsable;
+    }
+
+    public void setPrenomResponsable(String prenomResponsable) {
+        this.prenomResponsable = prenomResponsable;
+    }
+
+    public String getTelResponsable() {
+        return telResponsable;
+    }
+
+    public void setTelResponsable(String telResponsable) {
+        this.telResponsable = telResponsable;
+    }
+
+    public String getMailResponsable() {
+        return mailResponsable;
+    }
+
+    public void setMailResponsable(String mailResponsable) {
+        this.mailResponsable = mailResponsable;
+    }
+
+    public String getPasswdResponsable() {
+        return passwdResponsable;
+    }
+
+    public void setPasswdResponsable(String passwdResponsable) {
+        this.passwdResponsable = passwdResponsable;
     }
 
     public Centrale getCentrale() {
@@ -29,19 +77,16 @@ public class Responsable extends Employe {
         this.centrale = centrale;
     }
 
-    public String getCentraleId() {
-        return centraleId;
-    }
-
-    public void setCentraleId(String centraleId) {
-        this.centraleId = centraleId;
-    }
-
     @Override
     public String toString() {
-        return "Responsable{" + super.toString() +
-                ", centraleId='" + centraleId + '\'' +
-                "logisticienList=" + logisticienList +
+        return "Responsable{" +
+                "idResponsable=" + idResponsable +
+                ", nomResponsable='" + nomResponsable + '\'' +
+                ", prenomResponsable='" + prenomResponsable + '\'' +
+                ", telResponsable='" + telResponsable + '\'' +
+                ", mailResponsable='" + mailResponsable + '\'' +
+                ", passwdResponsable='" + passwdResponsable + '\'' +
+                ", centrale=" + centrale +
                 '}';
     }
 }
