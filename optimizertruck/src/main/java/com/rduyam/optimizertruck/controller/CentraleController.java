@@ -17,10 +17,17 @@ public class CentraleController {
 
  @GetMapping("/centrales")
  /*   @RequestMapping(value="centrales", method = RequestMethod.GET)*/
-    public String home(Model model) {
+    public String afficherCentrales(Model model) {
         Iterable<Centrale> centrales = service.getAllCentrales();
         model.addAttribute("centrales", centrales);
-        return "Accueil";
+        return "afficherCentrales";
+    }
+
+    @GetMapping("/centrale/{id}")
+    public String afficherCentrale(@PathVariable("id") final Long id, Model model) {
+        Centrale centrale = service.getCentrale(id);
+        model.addAttribute("centrale", centrale);
+        return "afficherCentrale";
     }
 
     @GetMapping("/createCentrale")
@@ -45,11 +52,11 @@ public class CentraleController {
 
     @PostMapping("/saveCentrale")
     public ModelAndView saveCentrale(@ModelAttribute Centrale centrale) {
-        if(centrale.getIdCentrale() != null) {
+ /*       if(centrale.getIdCentrale() != null) {
             Centrale current = service.getCentrale(centrale.getIdCentrale());
-        }
+        }*/
         service.saveCentrale(centrale);
-        return new ModelAndView("redirect:/centrales");
+        return new ModelAndView("redirect:/centrale");
     }
 
 }

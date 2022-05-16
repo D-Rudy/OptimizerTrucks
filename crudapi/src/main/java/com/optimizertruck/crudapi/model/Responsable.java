@@ -27,12 +27,11 @@ public class Responsable {
     @Column(name = "passwd_responsable")
     private String passwdResponsable;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_centrale", nullable = false)
+    @OneToOne(optional = false)
+    @JoinColumn(name = "id_centrale", referencedColumnName = "id_centrale")
     private Centrale centrale;
 
-    @OneToMany
-    private List<Logisticien> logisticiens;
+
 
 
     public Responsable() {
@@ -94,6 +93,7 @@ public class Responsable {
         this.centrale = centrale;
     }
 
+/*
     public List<Logisticien> getLogisticiens() {
         return logisticiens;
     }
@@ -101,6 +101,7 @@ public class Responsable {
     public void setLogisticiens(List<Logisticien> logisticiens) {
         this.logisticiens = logisticiens;
     }
+*/
 
 
 

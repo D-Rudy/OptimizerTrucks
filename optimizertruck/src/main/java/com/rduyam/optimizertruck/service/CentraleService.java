@@ -28,7 +28,7 @@ public class CentraleService {
     public Centrale saveCentrale(Centrale centrale) {
         Centrale savedCentrale;
 
-        // Functional rule : Last name must be capitalized.
+        // Functional rule : Centrale name must be capitalized.
         centrale.setNomCentrale(centrale.getNomCentrale().toUpperCase());
 
        if (centrale.getIdCentrale() == null) {

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +15,7 @@
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
           crossorigin="anonymous">
 
-    <title>Centrales Web Application</title>
+    <title>Optimizer Trucks Web Application</title>
 
     <style>
         body {
@@ -42,10 +41,15 @@
 
 <div class="container special">
 
-    <h2 class="h2">Ajout d'une nouvelle centrale</h2>
+    <h2 class="h2">Modification de la centrale <span th:text="${centrale.nomCentrale}"> nom </span> de <span
+            th:text="${centrale.villeCentrale}"> ville</span></h2>
     <div>
         <form method="post"
               th:action="@{/saveCentrale}" th:object="${centrale}">
+            <div class="form-group">
+                <input
+                        type="hidden" th:field="*{idCentrale}" class="form-control">
+            </div>
             <div class="form-group">
                 <label for="nomCentraleInput">Nom</label>
                 <input
@@ -85,7 +89,7 @@
                         placeholder="Capacité de production">
             </div>
 
-            <button type="submit" class="btn btn-primary">Créer</button>
+            <button type="submit" class="btn btn-primary">Modifier</button>
         </form>
     </div>
 

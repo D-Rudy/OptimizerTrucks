@@ -3,6 +3,7 @@ package com.optimizertruck.crudapi.service;
 
 
 import com.optimizertruck.crudapi.model.Centrale;
+import com.optimizertruck.crudapi.repository.CentraleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ public class CentraleService {
 
 
     @Autowired
-    com.optimizertruck.crudapi.repository.CentraleRepository centraleRepository;
+    CentraleRepository centraleRepository;
 
 
     public Iterable<Centrale> getAllCentrales() {

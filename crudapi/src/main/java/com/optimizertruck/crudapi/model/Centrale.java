@@ -32,9 +32,7 @@ public class Centrale {
 
     @Column(name = "capacite_prod")
     private Integer capaciteProd;
-/*
-    @OneToMany
-    private List<Responsable> responsables;*/
+
 
     public Centrale() {
     }
@@ -102,16 +100,7 @@ public class Centrale {
     public void setCapaciteProd(Integer capaciteProd) {
         this.capaciteProd = capaciteProd;
     }
-
-    /*public List<Responsable> getResponsables() {
-        return responsables;
-    }
-
-    public void setResponsables(List<Responsable> responsables) {
-        this.responsables = responsables;
-    }
-
-    */@Override
+@Override
     public String toString() {
         return "Centrale{" +
                 "idCentrale=" + idCentrale +

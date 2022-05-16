@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1")
 public class ResponsableController {
 
     @Autowired
@@ -28,7 +27,7 @@ public class ResponsableController {
     }
 
     @GetMapping("/responsable/{id}")
-    public ResponseEntity<Responsable> getResponsableById(@PathVariable(value = "id") Integer responsableId) throws ResourceNotFoundException {
+    public ResponseEntity<Responsable> getResponsableById(@PathVariable(value = "id") Long responsableId) throws ResourceNotFoundException {
         Responsable responsable = responsableRepository.findById(responsableId).orElseThrow(() -> new ResourceNotFoundException("Le responsable avec l'id " + responsableId + " est introuvable"));
         return ResponseEntity.ok().body(responsable);
     }
@@ -40,7 +39,7 @@ public class ResponsableController {
     }
 
     @PutMapping("/responsable/{id}")
-    public ResponseEntity<Responsable> updateResponsable(@PathVariable(value = "id") Integer responsableId,
+    public ResponseEntity<Responsable> updateResponsable(@PathVariable(value = "id") Long responsableId,
                                                          @Valid @RequestBody Responsable responsableDetails) throws ResourceNotFoundException {
         Responsable responsable = responsableRepository.findById(responsableId).
                 orElseThrow(() -> new ResourceNotFoundException
@@ -56,8 +55,8 @@ public class ResponsableController {
         return ResponseEntity.ok(updatedResponsable);
     }
 
-    @DeleteMapping("/responsables/{id}")
-    public Map<String, Boolean> deleteResponsable(@PathVariable(value = "id") Integer responsableId) throws ResourceNotFoundException {
+    @DeleteMapping("/responsable/{id}")
+    public Map<String, Boolean> deleteResponsable(@PathVariable(value = "id") Long responsableId) throws ResourceNotFoundException {
         Responsable responsable = responsableRepository.findById(responsableId).orElseThrow(() -> new ResourceNotFoundException("Le responsable avec l'id " + responsableId + " est introuvable"));
 
         responsableRepository.delete(responsable);

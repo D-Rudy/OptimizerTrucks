@@ -32,7 +32,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href=".">Système de gestion des centrales</a>
+            <a class="navbar-brand" href="">Système de gestion des centrales</a>
         </div>
     </div>
 </nav>
@@ -56,7 +56,7 @@
             <tr th:each="centrale: ${centrales}">
                 <td><span th:text="${centrale.idCentrale}"> Id </span></td>
                <td><span th:text="${centrale.nomCentrale}"> Nom </span></td>
-                <td>
+                <td><a th:href="@{/centrale/{id}(id=${centrale.idCentrale})}"><button class="btn btn-danger">Afficher</button></a>
                     <a th:href="@{/updateCentrale/{id}(id=${centrale.idCentrale})}"><button class="btn btn-info">Modifier</button></a>
                     <a th:href="@{/deleteCentrale/{id}(id=${centrale.idCentrale})}"><button class="btn btn-danger">Supprimer</button></a>
                 </td>
