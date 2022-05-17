@@ -20,28 +20,28 @@ public class CentraleController {
     public String afficherCentrales(Model model) {
         Iterable<Centrale> centrales = service.getAllCentrales();
         model.addAttribute("centrales", centrales);
-        return "afficherCentrales";
+        return "centrale/afficherCentrales";
     }
 
     @GetMapping("/centrale/{id}")
     public String afficherCentrale(@PathVariable("id") final Long id, Model model) {
         Centrale centrale = service.getCentrale(id);
         model.addAttribute("centrale", centrale);
-        return "afficherCentrale";
+        return "centrale/afficherCentrale";
     }
 
     @GetMapping("/createCentrale")
     public String createCentrale(Model model) {
         Centrale centrale = new Centrale();
         model.addAttribute("centrale", centrale);
-        return "formNewCentrale";
+        return "centrale/formNewCentrale";
     }
 
     @GetMapping("/updateCentrale/{id}")
     public String updateCentrale(@PathVariable("id") final Long id, Model model) {
         Centrale centrale = service.getCentrale(id);
         model.addAttribute("centrale",centrale);
-        return "formUpdateCentrale";
+        return "centrale/formUpdateCentrale";
     }
 
     @GetMapping("/deleteCentrale/{id}")

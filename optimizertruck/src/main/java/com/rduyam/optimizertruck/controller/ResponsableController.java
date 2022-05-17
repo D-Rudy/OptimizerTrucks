@@ -1,8 +1,6 @@
 package com.rduyam.optimizertruck.controller;
 
-import com.rduyam.optimizertruck.model.Centrale;
 import com.rduyam.optimizertruck.model.Responsable;
-import com.rduyam.optimizertruck.service.CentraleService;
 import com.rduyam.optimizertruck.service.ResponsableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,28 +22,28 @@ public class ResponsableController {
     public String afficherResponsables(Model model) {
         Iterable<Responsable> responsables = service.getAllResponsables();
         model.addAttribute("responsables", responsables);
-        return "afficherResponsables";
+        return "responsable/afficherResponsables";
     }
 
     @GetMapping("/responsable/{id}")
     public String afficherResponsable(@PathVariable("id") final Long id, Model model) {
         Responsable responsable = service.getResponsable(id);
         model.addAttribute("responsable", responsable);
-        return "afficherResponsable";
+        return "responsable/afficherResponsable";
     }
 
     @GetMapping("/createResponsable")
     public String createResponsable(Model model) {
         Responsable responsable = new Responsable();
         model.addAttribute("responsable", responsable);
-        return "formNewResponsable";
+        return "responsable/formNewResponsable";
     }
 
     @GetMapping("/updateResponsable/{id}")
     public String updateResponsable(@PathVariable("id") final Long id, Model model) {
         Responsable responsable = service.getResponsable(id);
         model.addAttribute("responsable",responsable);
-        return "formUpdateResponsable";
+        return "responsable/formUpdateResponsable";
     }
 
     @GetMapping("/deleteResponsable/{id}")
