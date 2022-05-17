@@ -8,9 +8,9 @@ import javax.persistence.*;
 public class Livraison {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_livraison", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "qte_livree")
     private Double qteLivree;
@@ -29,11 +29,11 @@ public class Livraison {
     public Livraison() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

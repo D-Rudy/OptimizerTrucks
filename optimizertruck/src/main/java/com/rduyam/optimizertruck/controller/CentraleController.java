@@ -56,7 +56,7 @@ public class CentraleController {
             Centrale current = service.getCentrale(centrale.getIdCentrale());
         }*/
         service.saveCentrale(centrale);
-        return new ModelAndView("redirect:/centrale");
+        return new ModelAndView("redirect:/centrales");
     }
 
 }

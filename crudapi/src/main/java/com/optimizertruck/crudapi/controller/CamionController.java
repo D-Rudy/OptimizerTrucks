@@ -14,7 +14,6 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("/api/v1")
 public class CamionController {
 
     @Autowired
@@ -25,19 +24,19 @@ public class CamionController {
         return camionRepository.findAll();
     }
 
-    @GetMapping("/camions/{id}")
-    public ResponseEntity<Camion> getCamionById(@PathVariable(value = "id") Integer camionId) throws ResourceNotFoundException {
+    @GetMapping("/camion/{id}")
+    public ResponseEntity<Camion> getCamionById(@PathVariable(value = "id") Long camionId) throws ResourceNotFoundException {
         Camion camion = camionRepository.findById(camionId).orElseThrow(() -> new ResourceNotFoundException("Le camion avec l'id " + camionId + " est introuvable"));
         return ResponseEntity.ok().body(camion);
     }
 
-    @PostMapping("/camions")
+    @PostMapping("/camion")
     public Camion createCamion(@Valid @RequestBody Camion camion) {
         return camionRepository.save(camion);
     }
 
-    @PutMapping("/camions/{id}")
-    public ResponseEntity<Camion> updateCamion(@PathVariable(value = "id") Integer camionId,
+    @PutMapping("/camion/{id}")
+    public ResponseEntity<Camion> updateCamion(@PathVariable(value = "id") Long camionId,
                                                @Valid @RequestBody Camion camionDetails) throws ResourceNotFoundException {
         Camion camion = camionRepository.findById(camionId).
                 orElseThrow(() -> new ResourceNotFoundException
@@ -50,8 +49,8 @@ public class CamionController {
         return ResponseEntity.ok(updatedCamion);
     }
 
-    @DeleteMapping("/camions/{id}")
-    public Map<String, Boolean> deleteCamion(@PathVariable(value = "id") Integer camionId) throws ResourceNotFoundException {
+    @DeleteMapping("/camion/{id}")
+    public Map<String, Boolean> deleteCamion(@PathVariable(value = "id") Long camionId) throws ResourceNotFoundException {
         Camion camion = camionRepository.findById(camionId).orElseThrow(() -> new ResourceNotFoundException("Le camion avec l'id " + camionId + " est introuvable"));
 
         camionRepository.delete(camion);

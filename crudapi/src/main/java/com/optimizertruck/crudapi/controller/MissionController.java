@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1")
 public class MissionController {
     @Autowired
     private MissionRepository missionRepository;
@@ -24,7 +23,7 @@ public class MissionController {
     }
 
     @GetMapping("/mission/{id}")
-    public ResponseEntity<Mission> getMissionById(@PathVariable(value = "id") Integer missionId) throws ResourceNotFoundException {
+    public ResponseEntity<Mission> getMissionById(@PathVariable(value = "id") Long missionId) throws ResourceNotFoundException {
         Mission mission = missionRepository.findById(missionId).orElseThrow(() -> new ResourceNotFoundException("La mission avec l'id " + missionId + " est introuvable"));
         return ResponseEntity.ok().body(mission);
     }
@@ -35,7 +34,7 @@ public class MissionController {
     }
 
     @PutMapping("/mission/{id}")
-    public ResponseEntity<Mission> updateMission(@PathVariable(value = "id") Integer missionId,
+    public ResponseEntity<Mission> updateMission(@PathVariable(value = "id") Long missionId,
                                                  @Valid @RequestBody Mission missionDetails) throws ResourceNotFoundException {
         Mission mission = missionRepository.findById(missionId).
                 orElseThrow(() -> new ResourceNotFoundException
@@ -52,7 +51,7 @@ public class MissionController {
     }
 
     @DeleteMapping("/mission/{id}")
-    public Map<String, Boolean> deleteMission(@PathVariable(value = "id") Integer missionId) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteMission(@PathVariable(value = "id") Long missionId) throws ResourceNotFoundException {
         Mission mission = missionRepository.findById(missionId).orElseThrow(() -> new ResourceNotFoundException("La mission avec l'id " + missionId + " est introuvable"));
 
         missionRepository.delete(mission);

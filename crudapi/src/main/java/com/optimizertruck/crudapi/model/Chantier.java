@@ -8,9 +8,9 @@ import java.util.List;
 public class Chantier {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_chantier", nullable = false)
-    private Integer idChantier;
+    private Long idChantier;
 
     @Column(name = "nom_chantier")
     private String nomChantier;
@@ -36,11 +36,11 @@ public class Chantier {
     public Chantier() {
     }
 
-    public Integer getIdChantier() {
+    public Long getIdChantier() {
         return idChantier;
     }
 
-    public void setIdChantier(Integer idChantier) {
+    public void setIdChantier(Long idChantier) {
         this.idChantier = idChantier;
     }
 

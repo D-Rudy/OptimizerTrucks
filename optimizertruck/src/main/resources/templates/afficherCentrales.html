@@ -46,6 +46,7 @@
             <tr>
                 <th>ID</th>
                 <th>Nom</th>
+                <th>Ville</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -56,6 +57,7 @@
             <tr th:each="centrale: ${centrales}">
                 <td><span th:text="${centrale.idCentrale}"> Id </span></td>
                <td><span th:text="${centrale.nomCentrale}"> Nom </span></td>
+                <td><span th:text="${centrale.villeCentrale}"> Ville </span></td>
                 <td><a th:href="@{/centrale/{id}(id=${centrale.idCentrale})}"><button class="btn btn-danger">Afficher</button></a>
                     <a th:href="@{/updateCentrale/{id}(id=${centrale.idCentrale})}"><button class="btn btn-info">Modifier</button></a>
                     <a th:href="@{/deleteCentrale/{id}(id=${centrale.idCentrale})}"><button class="btn btn-danger">Supprimer</button></a>

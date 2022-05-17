@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1")
 public class LogisticienController {
 
 
@@ -30,7 +29,7 @@ public class LogisticienController {
     }
 
     @GetMapping("/logisticien/{id}")
-    public ResponseEntity<Logisticien> getLogisticienById(@PathVariable(value = "id") Integer logisticienId) throws ResourceNotFoundException {
+    public ResponseEntity<Logisticien> getLogisticienById(@PathVariable(value = "id") Long logisticienId) throws ResourceNotFoundException {
         Logisticien logisticien = logisticienRepository.findById(logisticienId).orElseThrow(() -> new ResourceNotFoundException("Le logisticien avec l'id " + logisticienId + " est introuvable"));
         return ResponseEntity.ok().body(logisticien);
     }
@@ -42,7 +41,7 @@ public class LogisticienController {
     }
 
     @PutMapping("/logisticien/{id}")
-    public ResponseEntity<Logisticien> updateLogisticien(@PathVariable(value = "id") Integer logisticienId,
+    public ResponseEntity<Logisticien> updateLogisticien(@PathVariable(value = "id") Long logisticienId,
                                                          @Valid @RequestBody Logisticien logisticienDetails) throws ResourceNotFoundException {
         Logisticien logisticien = logisticienRepository.findById(logisticienId).
                 orElseThrow(() -> new ResourceNotFoundException
@@ -59,8 +58,8 @@ public class LogisticienController {
         return ResponseEntity.ok(updatedLogisticien);
     }
 
-    @DeleteMapping("/logisticiens/{id}")
-    public Map<String, Boolean> deleteLogisticien(@PathVariable(value = "id") Integer logisticienId) throws ResourceNotFoundException {
+    @DeleteMapping("/logisticien/{id}")
+    public Map<String, Boolean> deleteLogisticien(@PathVariable(value = "id") Long logisticienId) throws ResourceNotFoundException {
         Logisticien logisticien = logisticienRepository.findById(logisticienId).orElseThrow(() -> new ResourceNotFoundException("Le logisticien avec l'id " + logisticienId + " est introuvable"));
 
         logisticienRepository.delete(logisticien);

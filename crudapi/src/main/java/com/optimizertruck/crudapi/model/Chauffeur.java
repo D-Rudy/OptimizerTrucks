@@ -8,9 +8,9 @@ import java.util.List;
 public class Chauffeur {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_chauffeur", nullable = false)
-    private Integer idChauffeur;
+    private Long idChauffeur;
 
     @Column(name = "nom_chauffeur")
     private String nomChauffeur;
@@ -37,11 +37,11 @@ public class Chauffeur {
     public Chauffeur() {
     }
 
-    public Integer getIdChauffeur() {
+    public Long getIdChauffeur() {
         return idChauffeur;
     }
 
-    public void setIdChauffeur(Integer idChauffeur) {
+    public void setIdChauffeur(Long idChauffeur) {
         this.idChauffeur = idChauffeur;
     }
 

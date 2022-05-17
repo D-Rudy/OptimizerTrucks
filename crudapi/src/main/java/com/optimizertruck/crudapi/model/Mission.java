@@ -7,9 +7,9 @@ import javax.persistence.*;
 public class Mission {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_mission", nullable = false)
-    private Integer idMission;
+    private Long idMission;
 
     @Column(name = "date_heure_mission")
     private String dateHeureMission;
@@ -32,11 +32,11 @@ public class Mission {
     public Mission() {
     }
 
-    public Integer getIdMission() {
+    public Long getIdMission() {
         return idMission;
     }
 
-    public void setIdMission(Integer idMission) {
+    public void setIdMission(Long idMission) {
         this.idMission = idMission;
     }
 

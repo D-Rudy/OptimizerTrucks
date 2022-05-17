@@ -8,9 +8,9 @@ import java.util.List;
 public class Responsable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_responsable", nullable = false)
-    private Integer idResponsable;
+    private Long idResponsable;
 
     @Column(name = "nom_responsable")
     private String nomResponsable;
@@ -27,21 +27,19 @@ public class Responsable {
     @Column(name = "passwd_responsable")
     private String passwdResponsable;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "id_centrale", referencedColumnName = "id_centrale")
+    @ManyToOne
+    @JoinColumn(name="idCentrale", nullable=false)
     private Centrale centrale;
-
-
 
 
     public Responsable() {
     }
 
-    public Integer getIdResponsable() {
+    public Long getIdResponsable() {
         return idResponsable;
     }
 
-    public void setIdResponsable(Integer idResponsable) {
+    public void setIdResponsable(Long idResponsable) {
         this.idResponsable = idResponsable;
     }
 
@@ -92,17 +90,6 @@ public class Responsable {
     public void setCentrale(Centrale centrale) {
         this.centrale = centrale;
     }
-
-/*
-    public List<Logisticien> getLogisticiens() {
-        return logisticiens;
-    }
-
-    public void setLogisticiens(List<Logisticien> logisticiens) {
-        this.logisticiens = logisticiens;
-    }
-*/
-
 
 
     @Override

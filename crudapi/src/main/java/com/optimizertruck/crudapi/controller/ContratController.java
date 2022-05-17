@@ -15,7 +15,6 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("/api/v1")
 public class ContratController {
 
     @Autowired
@@ -27,7 +26,7 @@ public class ContratController {
     }
 
     @GetMapping("/contrat/{id}")
-    public ResponseEntity<Contrat> getContratById(@PathVariable(value = "id") Integer contratId) throws ResourceNotFoundException {
+    public ResponseEntity<Contrat> getContratById(@PathVariable(value = "id") Long contratId) throws ResourceNotFoundException {
         Contrat contrat = contratRepository.findById(contratId).orElseThrow(() -> new ResourceNotFoundException("Le contrat avec l'id " + contratId + " est introuvable"));
         return ResponseEntity.ok().body(contrat);
     }
@@ -38,7 +37,7 @@ public class ContratController {
     }
 
     @PutMapping("/contrat/{id}")
-    public ResponseEntity<Contrat> updateContrat(@PathVariable(value = "id") Integer contratId,
+    public ResponseEntity<Contrat> updateContrat(@PathVariable(value = "id") Long contratId,
                                                  @Valid @RequestBody Contrat contratDetails) throws ResourceNotFoundException {
         Contrat contrat = contratRepository.findById(contratId).
                 orElseThrow(() -> new ResourceNotFoundException
@@ -55,7 +54,7 @@ public class ContratController {
     }
 
     @DeleteMapping("/contrat/{id}")
-    public Map<String, Boolean> deleteContrat(@PathVariable(value = "id") Integer contratId) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteContrat(@PathVariable(value = "id") Long contratId) throws ResourceNotFoundException {
         Contrat contrat = contratRepository.findById(contratId).orElseThrow(() -> new ResourceNotFoundException("Le contrat avec l'id " + contratId + " est introuvable"));
 
         contratRepository.delete(contrat);

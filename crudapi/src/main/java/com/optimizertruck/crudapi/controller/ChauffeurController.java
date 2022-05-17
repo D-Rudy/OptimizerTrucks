@@ -27,7 +27,7 @@ public class ChauffeurController {
     }
 
     @GetMapping("/chauffeur/{id}")
-    public ResponseEntity<Chauffeur> getChauffeurById(@PathVariable(value = "id") Integer chauffeurId) throws ResourceNotFoundException {
+    public ResponseEntity<Chauffeur> getChauffeurById(@PathVariable(value = "id") Long chauffeurId) throws ResourceNotFoundException {
         Chauffeur chauffeur = chauffeurRepository.findById(chauffeurId).orElseThrow(() -> new ResourceNotFoundException("Le Chauffeur avec l'id " + chauffeurId + " est introuvable"));
         return ResponseEntity.ok().body(chauffeur);
     }
@@ -38,7 +38,7 @@ public class ChauffeurController {
     }
 
     @PutMapping("/chauffeur/{id}")
-    public ResponseEntity<Chauffeur> updateChauffeur(@PathVariable(value = "id") Integer chauffeurId,
+    public ResponseEntity<Chauffeur> updateChauffeur(@PathVariable(value = "id") Long chauffeurId,
                                                    @Valid @RequestBody Chauffeur chauffeurDetails) throws ResourceNotFoundException {
         Chauffeur chauffeur = chauffeurRepository.findById(chauffeurId).
                 orElseThrow(() -> new ResourceNotFoundException
@@ -54,8 +54,8 @@ public class ChauffeurController {
         return ResponseEntity.ok(updatedChauffeur);
     }
 
-    @DeleteMapping("/chauffeurs/{id}")
-    public Map<String, Boolean> deleteChauffeur(@PathVariable(value = "id") Integer chauffeurId) throws ResourceNotFoundException {
+    @DeleteMapping("/chauffeur/{id}")
+    public Map<String, Boolean> deleteChauffeur(@PathVariable(value = "id") Long chauffeurId) throws ResourceNotFoundException {
         Chauffeur chauffeur = chauffeurRepository.findById(chauffeurId).orElseThrow(() -> new ResourceNotFoundException("Le Chauffeur avec l'id " + chauffeurId + " est introuvable"));
 
         chauffeurRepository.delete(chauffeur);

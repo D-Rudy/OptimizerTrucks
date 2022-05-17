@@ -8,9 +8,9 @@ import java.util.List;
 public class Client {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_client")
-    private Integer idClient;
+    private Long idClient;
 
     @Column(name = "nom_client")
     private String nomClient;
@@ -39,11 +39,11 @@ public class Client {
     public Client() {
     }
 
-    public Integer getIdClient() {
+    public Long getIdClient() {
         return idClient;
     }
 
-    public void setIdClient(Integer idClient) {
+    public void setIdClient(Long idClient) {
         this.idClient = idClient;
     }
 

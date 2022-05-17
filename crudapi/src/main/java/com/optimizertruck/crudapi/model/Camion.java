@@ -11,9 +11,9 @@ import java.util.List;
 public class Camion {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_camion", nullable = false)
-    private Integer idCamion;
+    private Long idCamion;
 
     @Column(name = "immatriculation_camion)")
     private String immatriculation;
@@ -43,11 +43,11 @@ public class Camion {
     GETTER/SETTER
      */
 
-    public Integer getIdCamion() {
+    public Long getIdCamion() {
         return idCamion;
     }
 
-    public void setIdCamion(Integer idCamion) {
+    public void setIdCamion(Long idCamion) {
         this.idCamion = idCamion;
     }
 

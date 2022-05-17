@@ -7,9 +7,9 @@ import java.util.List;
 @Table(name = "logisticien")
 public class Logisticien {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_logisticien", nullable = false)
-    private Integer idLogisticien;
+    private Long idLogisticien;
 
     @Column(name = "nom_logisticien")
     private String nomLogisticien;
@@ -26,21 +26,18 @@ public class Logisticien {
     @Column(name = "passwd_logisticien")
     private String passwdLogisticien;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_responsable", nullable = false)
+    @ManyToOne
+    @JoinColumn(name="idResponsable", nullable=false)
     private Responsable responsable;
-
-    @OneToMany
-    private List<Mission> missions;
 
     public Logisticien() {
     }
 
-    public Integer getIdLogisticien() {
+    public Long getIdLogisticien() {
         return idLogisticien;
     }
 
-    public void setIdLogisticien(Integer idLogisticien) {
+    public void setIdLogisticien(Long idLogisticien) {
         this.idLogisticien = idLogisticien;
     }
 
@@ -92,13 +89,6 @@ public class Logisticien {
         this.responsable = responsable;
     }
 
-    public List<Mission> getMissions() {
-        return missions;
-    }
-
-    public void setMissions(List<Mission> missions) {
-        this.missions = missions;
-    }
 
     @Override
     public String toString() {

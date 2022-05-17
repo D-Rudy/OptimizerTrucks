@@ -1,19 +1,17 @@
 package com.optimizertruck.crudapi.service;
 
-import com.optimizertruck.crudapi.model.Centrale;
 import com.optimizertruck.crudapi.model.Responsable;
 import com.optimizertruck.crudapi.repository.ResponsableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class ResponsableService {
-
 
     @Autowired
     ResponsableRepository responsableRepository;
-
-
 
     public Iterable<Responsable> getAllResponsables() {
         return responsableRepository.findAll();

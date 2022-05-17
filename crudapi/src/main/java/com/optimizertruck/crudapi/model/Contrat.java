@@ -6,9 +6,9 @@ import javax.persistence.*;
 @Table(name = "contrat")
 public class Contrat {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "num_contrat", nullable = false)
-    private Integer numContrat;
+    private Long numContrat;
 
     @Column(name = "date_debut_contrat")
     private String dateDebutContrat;
@@ -30,11 +30,11 @@ public class Contrat {
     public Contrat() {
     }
 
-    public Integer getNumContrat() {
+    public Long getNumContrat() {
         return numContrat;
     }
 
-    public void setNumContrat(Integer numContrat) {
+    public void setNumContrat(Long numContrat) {
         this.numContrat = numContrat;
     }
 

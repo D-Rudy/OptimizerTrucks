@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1")
 public class LivrerController {
 
 
@@ -27,19 +26,19 @@ public class LivrerController {
         return livrerRepository.findAll();
     }
 
-    @GetMapping("/livraisons/{id}")
-    public ResponseEntity<Livraison> getLogisticienById(@PathVariable(value = "id") Integer livraisonId) throws ResourceNotFoundException {
+    @GetMapping("/livraison/{id}")
+    public ResponseEntity<Livraison> getLogisticienById(@PathVariable(value = "id") Long livraisonId) throws ResourceNotFoundException {
         Livraison livraison = livrerRepository.findById(livraisonId).orElseThrow(() -> new ResourceNotFoundException("La livraison avec l'id " + livraisonId + " est introuvable"));
         return ResponseEntity.ok().body(livraison);
     }
 
-    @PostMapping("/livraisons")
+    @PostMapping("/livraison")
     public Livraison createLivraison(@Valid @RequestBody Livraison livraison) {
         return livrerRepository.save(livraison);
     }
 
-    @PutMapping("/livraisons/{id}")
-    public ResponseEntity<Livraison> updateLivraison(@PathVariable(value = "id") Integer livraisonId,
+    @PutMapping("/livraison/{id}")
+    public ResponseEntity<Livraison> updateLivraison(@PathVariable(value = "id") Long livraisonId,
                                                   @Valid @RequestBody Livraison livraisonDetails) throws ResourceNotFoundException {
         Livraison livraison = livrerRepository.findById(livraisonId).
                 orElseThrow(() -> new ResourceNotFoundException
@@ -55,8 +54,8 @@ public class LivrerController {
         return ResponseEntity.ok(updatedLivraison);
     }
 
-    @DeleteMapping("/livraisons/{id}")
-    public Map<String, Boolean> deleteLivraison(@PathVariable(value = "id") Integer livraisonId) throws ResourceNotFoundException {
+    @DeleteMapping("/livraison/{id}")
+    public Map<String, Boolean> deleteLivraison(@PathVariable(value = "id") Long livraisonId) throws ResourceNotFoundException {
         Livraison livraison = livrerRepository.findById(livraisonId).orElseThrow(() -> new ResourceNotFoundException("La livraison avec l'id " + livraisonId + " est introuvable"));
 
         livrerRepository.delete(livraison);

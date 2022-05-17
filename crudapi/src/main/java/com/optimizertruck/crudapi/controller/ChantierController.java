@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1")
 public class ChantierController {
     @Autowired
     private ChantierRepository chantierRepository;
@@ -24,19 +23,19 @@ public class ChantierController {
         return chantierRepository.findAll();
     }
 
-    @GetMapping("/chantiers/{id}")
-    public ResponseEntity<Chantier> getChantierById(@PathVariable(value = "id") Integer chantierId) throws ResourceNotFoundException {
+    @GetMapping("/chantier/{id}")
+    public ResponseEntity<Chantier> getChantierById(@PathVariable(value = "id") Long chantierId) throws ResourceNotFoundException {
         Chantier chantier = chantierRepository.findById(chantierId).orElseThrow(() -> new ResourceNotFoundException("Le chantier avec l'id " + chantierId + " est introuvable"));
         return ResponseEntity.ok().body(chantier);
     }
 
-    @PostMapping("/chantiers")
+    @PostMapping("/chantier")
     public Chantier createChantier(@Valid @RequestBody Chantier chantier) {
         return chantierRepository.save(chantier);
     }
 
-    @PutMapping("/chantiers/{id}")
-    public ResponseEntity<Chantier> updateChantier(@PathVariable(value = "id") Integer chantierId,
+    @PutMapping("/chantier/{id}")
+    public ResponseEntity<Chantier> updateChantier(@PathVariable(value = "id") Long chantierId,
                                                    @Valid @RequestBody Chantier chantierDetails) throws ResourceNotFoundException {
         Chantier chantier = chantierRepository.findById(chantierId).
                 orElseThrow(() -> new ResourceNotFoundException
@@ -52,8 +51,8 @@ public class ChantierController {
         return ResponseEntity.ok(updatedChantier);
     }
 
-    @DeleteMapping("/chantiers/{id}")
-    public Map<String, Boolean> deleteChantier(@PathVariable(value = "id") Integer chantierId) throws ResourceNotFoundException {
+    @DeleteMapping("/chantier/{id}")
+    public Map<String, Boolean> deleteChantier(@PathVariable(value = "id") Long chantierId) throws ResourceNotFoundException {
         Chantier chantier = chantierRepository.findById(chantierId).orElseThrow(() -> new ResourceNotFoundException("Le chantier avec l'id " + chantierId + " est introuvable"));
 
         chantierRepository.delete(chantier);
