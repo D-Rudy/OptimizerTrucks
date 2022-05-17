@@ -16,7 +16,7 @@
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
           crossorigin="anonymous">
 
-    <title>Gestion des centrales</title>
+    <title>Optimizer Trucks Web App</title>
 
     <style>
         body {
@@ -32,41 +32,43 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="">Système de gestion des centrales</a>
+            <a class="navbar-brand" href="">Système de gestion des responsables</a>
         </div>
     </div>
 </nav>
 
 
 <div class="container special">
-    <h2 class="h2">Liste des centrales</h2>
+    <h2 class="h2">Liste des responsables</h2>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Nom</th>
-                <th>Ville</th>
+                <th>Prénom</th>
+                <th>Centrale</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            -           <tr th:if="${centrales.empty}">
-                <td colspan="3">Aucune centrale en base de données</td>
+            -           <tr th:if="${responsables.empty}">
+                <td colspan="3">Aucun responsable en base de données</td>
             </tr>
-            <tr th:each="centrale: ${centrales}">
-                <td><span th:text="${centrale.idCentrale}"> Id </span></td>
-                <td><span th:text="${centrale.nomCentrale}"> Nom </span></td>
-                <td><span th:text="${centrale.villeCentrale}"> Ville </span></td>
-                <td><a th:href="@{/centrale/{id}(id=${centrale.idCentrale})}"><button class="btn btn-danger">Afficher</button></a>
-                    <a th:href="@{/updateCentrale/{id}(id=${centrale.idCentrale})}"><button class="btn btn-info">Modifier</button></a>
-                    <a th:href="@{/deleteCentrale/{id}(id=${centrale.idCentrale})}"><button class="btn btn-danger">Supprimer</button></a>
+            <tr th:each="responsable: ${responsables}">
+                <td><span th:text="${responsable.idResponsable}"> Id </span></td>
+                <td><span th:text="${responsable.nomResponsable}"> Nom </span></td>
+                <td><span th:text="${responsable.prenomResponsable}"> Prénom </span></td>
+                <td><span th:text="${responsable.getCentrale}"> Prénom </span></td>
+                <td><a th:href="@{/responsable/{id}(id=${responsable.idResponsable})}"><button class="btn btn-danger">Afficher</button></a>
+                    <a th:href="@{/updateResponsable/{id}(id=${responsable.idResponsable})}"><button class="btn btn-info">Modifier</button></a>
+                    <a th:href="@{/deleteResponsable/{id}(id=${responsable.idResponsable})}"><button class="btn btn-danger">Supprimer</button></a>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <h4><a th:href="@{/createCentrale}">Ajouter une nouvelle centrale</a></h4>
+    <h4><a th:href="@{/createResponsable}">Ajouter une nouveau responsable</a></h4>
 
 </div>
 
