@@ -2,7 +2,6 @@ package com.rduyam.optimizertruck.controller;
 
 
 import com.rduyam.optimizertruck.model.Logisticien;
-import com.rduyam.optimizertruck.proxies.LogisticienProxy;
 import com.rduyam.optimizertruck.service.LogisticienService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

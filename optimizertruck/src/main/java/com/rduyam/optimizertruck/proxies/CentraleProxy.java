@@ -23,7 +23,7 @@ public class CentraleProxy {
     public Iterable<Centrale> getAllCentrales() {
 
         String baseApiUrl = props.getApiUrl();
-        String getCentraleUrl = baseApiUrl + "/templates/centrale/centrale";
+        String getCentraleUrl = baseApiUrl + "/centrales";
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Iterable<Centrale>> response = restTemplate.exchange(
