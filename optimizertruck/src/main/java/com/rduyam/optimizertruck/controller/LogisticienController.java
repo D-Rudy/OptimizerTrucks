@@ -21,14 +21,14 @@ public class LogisticienController {
     public String afficherResponsables(Model model) {
         Iterable<Logisticien> logisticiens = service.getAllLogisticiens();
         model.addAttribute("logisticiens", logisticiens);
-        return "afficherLogisticiens";
+        return "logisticien/afficherLogisticiens";
     }
 
     @GetMapping("/logisticien/{id}")
     public String afficherLogisticien(@PathVariable("id") final Long id, Model model) {
         Logisticien logisticien = service.getLogisticien(id);
         model.addAttribute("logisticien", logisticien);
-        return "afficherLogisticien";
+        return "logisticien/afficherLogisticien";
     }
 
     @GetMapping("/createLogisticien")
