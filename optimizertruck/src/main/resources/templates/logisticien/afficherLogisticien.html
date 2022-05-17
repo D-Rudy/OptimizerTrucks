@@ -34,7 +34,7 @@
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" href="">Système de gestion des
-        centrales</a>
+        logisticiens</a>
     </div>
   </div>
 </nav>
@@ -42,23 +42,24 @@
 
 <div class="container special">
   <form method="get"
-        th:action="@{/updateCentrale/{id}(id=${centrale.idCentrale})}" th:object="${centrale}">
-    <h1 class="h1">CENTRALE <span th:text="${centrale.nomCentrale}"> nom </span> de  <span th:text="${centrale.villeCentrale}"> ville</span></h1>
+        th:action="@{/updateLogisticien/{id}(id=${logisticien.idLogisticien})}" th:object="${logisticien}">
+    <h1 class="h1"><strong>Logisticien:</strong></h1></br>
     <div>
 
       <div class="form-group">
         <input
-                type="hidden" th:field="*{idCentrale}" class="form-control">
+                type="hidden" th:field="*{idLogisticien}" class="form-control">
       </div>
       <div class="form-group">
 
-        <h3><strong>Id: </strong><span th:text="${centrale.idCentrale}"> Id </span></h3></br>
-        <h3><strong>Nom: </strong><span th:text="${centrale.nomCentrale}"> Nom </span></h3></br>
-        <h3><strong>Tél: </strong><span th:text="${centrale.telCentrale}"> tel </span></h3></br>
-        <h3><strong>Adresse: </strong><span th:text="${centrale.adresseCentrale}"> adresse </span></h3></br>
-        <h3><strong>Code Postal: </strong><span th:text="${centrale.cpCentrale}"> cp </span></h3></br>
-        <h3><strong>Ville: </strong><span th:text="${centrale.villeCentrale}"> ville </span></h3></br>
-        <h3><strong>Capacité de production: </strong><span th:text="${centrale.capaciteProd}"> capacite </span>
+
+        <h3><strong>Nom: </strong><span th:text="${logisticien.nomLogisticien}"> Nom </span></h3></br>
+        <h3><strong>Prénom: </strong><span th:text="${logisticien.prenomLogisticien}"> prenom </span></h3></br>
+        <h3><strong>Téléphone: </strong><span th:text="${logisticien.telLogisticien}"> tel </span></h3></br>
+        <h3><strong>Mail: </strong><span th:text="${logisticien.mailLogisticien}"> mail </span></h3></br>
+        <h3><strong>Centrale: </strong><span th:text="${logisticien.getResponsable.getCentrale.nomCentrale}"> centrale </span></h3></br>
+        <h3><strong>Ville: </strong><span th:text="${logisticien.getResponsable.getCentrale.villeCentrale}"> ville </span></h3><br>
+          <h3><strong>Responsable: </strong><span th:text="${logisticien.getResponsable.nomResponsable}"></span> <span th:text="${logisticien.getResponsable.prenomResponsable}"> </span>
         </h3></br>
 
         <button type="submit" class="btn btn-primary">Modifier</button>

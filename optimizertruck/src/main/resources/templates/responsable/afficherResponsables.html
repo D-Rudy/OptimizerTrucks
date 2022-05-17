@@ -48,6 +48,7 @@
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Centrale</th>
+                <th>Ville</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -59,7 +60,8 @@
                 <td><span th:text="${responsable.idResponsable}"> Id </span></td>
                 <td><span th:text="${responsable.nomResponsable}"> Nom </span></td>
                 <td><span th:text="${responsable.prenomResponsable}"> Prénom </span></td>
-                <td><span th:text="${responsable.getCentrale}"> Prénom </span></td>
+                <td><span th:text="${responsable.getCentrale.getNomCentrale()}"> Centrale </span></td>
+                <td><span th:text="${responsable.getCentrale.getVilleCentrale()}"> Ville </span></td>
                 <td><a th:href="@{/responsable/{id}(id=${responsable.idResponsable})}"><button class="btn btn-danger">Afficher</button></a>
                     <a th:href="@{/updateResponsable/{id}(id=${responsable.idResponsable})}"><button class="btn btn-info">Modifier</button></a>
                     <a th:href="@{/deleteResponsable/{id}(id=${responsable.idResponsable})}"><button class="btn btn-danger">Supprimer</button></a>
