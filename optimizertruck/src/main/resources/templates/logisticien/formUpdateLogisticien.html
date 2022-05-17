@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+
+  <title>Optimizer Trucks Web Application</title>
+
+  <style>
+    body {
+      padding-top: 50px;
+    }
+
+    .special {
+      padding-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="">Système de gestion des
+        centrales</a>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container special">
+
+  <h2 class="h2">Modification de la centrale <span th:text="${centrale.nomCentrale}"> nom </span> de <span
+          th:text="${centrale.villeCentrale}"> ville</span></h2>
+  <div>
+    <form method="post"
+          th:action="@{/saveCentrale}" th:object="${centrale}">
+      <div class="form-group">
+        <input
+                type="hidden" th:field="*{idCentrale}" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="nomCentraleInput">Nom</label>
+        <input
+                type="text" th:field="*{nomCentrale}" class="form-control" id="nomCentraleInput"
+                aria-describedby="nomCentraleHelp" placeholder="Saisir le nom de la centrale"> <small
+              id="nomCentraleHelp" class="form-text text-muted">Merci d'écrire le nom de la centrale.</small>
+      </div>
+      <div class="form-group">
+        <label for="telInput">Téléphone</label>
+        <input
+                type="text" th:field="*{telCentrale}" class="form-control" id="telInput"
+                aria-describedby="telHelp" placeholder="Saisir le téléphone de la centrale"> <small
+              id="telHelp" class="form-text text-muted">Merci d'écrire le téléphone de la centrale.</small>
+      </div>
+      <div class="form-group">
+        <label for="adresseInput">Adresse</label>
+        <input
+                type="text" th:field="*{adresseCentrale}" class="form-control" id="adresseInput"
+                placeholder="Adresse">
+      </div>
+      <div class="form-group">
+        <label for="cpInput">Code Postal</label>
+        <input
+                type="text" th:field="*{cpCentrale}" class="form-control" id="cpInput"
+                placeholder="Code Postal">
+      </div>
+      <div class="form-group">
+        <label for="villeInput">Ville</label>
+        <input
+                type="text" th:field="*{villeCentrale}" class="form-control" id="villeInput"
+                placeholder="Ville">
+      </div>
+      <div class="form-group">
+        <label for="capaciteInput">Capacité de production</label>
+        <input
+                type="number" th:field="*{capaciteProd}" class="form-control" id="capaciteInput"
+                placeholder="Capacité de production">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Modifier</button>
+    </form>
+  </div>
+
+</div>
+
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+</html>
