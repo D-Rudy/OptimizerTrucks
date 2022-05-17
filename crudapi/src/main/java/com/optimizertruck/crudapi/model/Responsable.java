@@ -27,6 +27,9 @@ public class Responsable {
     @Column(name = "passwd_responsable")
     private String passwdResponsable;
 
+    @Column(name = "id_centrale")
+    private Long idCentrale;
+
     @ManyToOne
     @JoinColumn(name="idCentrale", nullable=false)
     private Centrale centrale;
@@ -91,6 +94,13 @@ public class Responsable {
         this.centrale = centrale;
     }
 
+    public Long getIdCentrale() {
+        return idCentrale;
+    }
+
+    public void setIdCentrale(Long idCentrale) {
+        this.idCentrale = idCentrale;
+    }
 
     @Override
     public String toString() {
