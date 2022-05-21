@@ -34,7 +34,7 @@
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="">Système de gestion des
-                centrales</a>
+                responsables centrale</a>
         </div>
     </div>
 </nav>
@@ -42,47 +42,47 @@
 
 <div class="container special">
 
-    <h2 class="h2">Ajout d'une nouvelle centrale</h2>
+    <h2 class="h2">Ajout d'un nouveau responsable</h2>
     <div>
         <form method="post"
-              th:action="@{/saveCentrale}" th:object="${centrale}">
+              th:action="@{/saveResponsable}" th:object="${responsable}">
             <div class="form-group">
-                <label for="nomCentraleInput">Nom</label>
+                <label for="nomInput">Nom</label>
                 <input
-                        type="text" th:field="*{nomCentrale}" class="form-control" id="nomCentraleInput"
-                        aria-describedby="nomCentraleHelp" placeholder="Saisir le nom de la centrale"> <small
-                    id="nomCentraleHelp" class="form-text text-muted">Merci d'écrire le nom de la centrale.</small>
+                        type="text" th:field="*{nomResponsable}" class="form-control" id="nomInput"
+                        aria-describedby="nomHelp" placeholder="Saisir le nom du responsable"> <small
+                    id="nomHelp" class="form-text text-muted">Merci d'écrire le nom du responsable.</small>
+            </div>
+            <div class="form-group">
+                <label for="prenomInput">Prénom</label>
+                <input
+                        type="text" th:field="*{prenomResponsable}" class="form-control" id="prenomInput"
+                        aria-describedby="prenomHelp" placeholder="Saisir le prénom du responsable"> <small
+                    id= "prenomHelp" class="form-text text-muted">Merci d'écrire le prénom du responsable.</small>
             </div>
             <div class="form-group">
                 <label for="telInput">Téléphone</label>
                 <input
-                        type="text" th:field="*{telCentrale}" class="form-control" id="telInput"
-                        aria-describedby="telHelp" placeholder="Saisir le téléphone de la centrale"> <small
-                    id="telHelp" class="form-text text-muted">Merci d'écrire le téléphone de la centrale.</small>
+                        type="text" th:field="*{telResponsable}" class="form-control" id="telInput"
+                        placeholder="Téléphone">
             </div>
             <div class="form-group">
-                <label for="adresseInput">Adresse</label>
+                <label for="mailInput">Mail</label>
                 <input
-                        type="text" th:field="*{adresseCentrale}" class="form-control" id="adresseInput"
-                        placeholder="Adresse">
+                        type="text" th:field="*{mailResponsable}" class="form-control" id="mailInput"
+                        placeholder="Mail">
             </div>
             <div class="form-group">
-                <label for="cpInput">Code Postal</label>
+                <label for="passwdInput">Mot de passe</label>
                 <input
-                        type="text" th:field="*{cpCentrale}" class="form-control" id="cpInput"
-                        placeholder="Code Postal">
+                        type="password" th:field="*{passwdResponsable}" class="form-control" id="passwdInput"
+                        placeholder="passwd">
             </div>
             <div class="form-group">
-                <label for="villeInput">Ville</label>
-                <input
-                        type="text" th:field="*{villeCentrale}" class="form-control" id="villeInput"
-                        placeholder="Ville">
-            </div>
-            <div class="form-group">
-                <label for="capaciteInput">Capacité de production</label>
-                <input
-                        type="number" th:field="*{capaciteProd}" class="form-control" id="capaciteInput"
-                        placeholder="Capacité de production">
+                <label for="capaciteInput">Responsable de la centrale de</label>
+                <select class="form-control" th:field="*{idCentrale}" id="dropCentrale">
+                    <option th:each="centrale:${centrales}" th:value="${centrale.idCentrale}"th:text="${centrale.nomCentrale +centrale.villeCentrale}"></option>
+                </select>
             </div>
 
             <button type="submit" class="btn btn-primary">Créer</button>

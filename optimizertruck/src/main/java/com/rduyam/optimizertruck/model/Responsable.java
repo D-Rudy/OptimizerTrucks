@@ -16,6 +16,8 @@ public class Responsable {
 
     private String passwdResponsable;
 
+    private Long idCentrale;
+
     private Centrale centrale;
 
     public Responsable() {
@@ -75,6 +77,14 @@ public class Responsable {
 
     public void setCentrale(Centrale centrale) {
         this.centrale = centrale;
+    }
+
+    public Long getIdCentrale() {
+        return idCentrale;
+    }
+
+    public void setIdCentrale(Long idCentrale) {
+        this.idCentrale = idCentrale;
     }
 
     @Override

@@ -50,7 +50,7 @@ public class ResponsableController {
         responsable.setTelResponsable(responsableDetails.getTelResponsable());
         responsable.setMailResponsable(responsableDetails.getMailResponsable());
         responsable.setPasswdResponsable(responsableDetails.getPasswdResponsable());
-        responsable.setIdResponsable(responsableDetails.getIdResponsable());
+        //responsable.setCentrale(responsableDetails.getCentrale());
 
         final Responsable updatedResponsable = responsableRepository.save(responsable);
         return ResponseEntity.ok(updatedResponsable);

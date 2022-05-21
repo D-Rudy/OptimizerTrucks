@@ -27,11 +27,11 @@ public class Responsable {
     @Column(name = "passwd_responsable")
     private String passwdResponsable;
 
-    @Column(name = "id_centrale")
+
     private Long idCentrale;
 
     @ManyToOne
-    @JoinColumn(name="idCentrale", nullable=false)
+    @JoinColumn( name="",referencedColumnName = "id_centrale")
     private Centrale centrale;
 
 
